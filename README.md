@@ -6,6 +6,11 @@
 ![Maturity](https://img.shields.io/badge/maturity-prototype-f59e0b)
 ![Data](https://img.shields.io/badge/data-demo%20only-16a34a)
 
+## Open the demos
+
+- [Current public mobile demo](https://proaicrm.github.io/aion-service-crm-demo/)
+- [Employee-first concept](./app-employee-concept.html) — a separate experimental workspace designed from the daily perspective of a service employee.
+
 ## What this repository is
 
 This repository presents the owner-approved visual direction and selected interaction concepts for **AION Service CRM** — a future operating system for smartphone service businesses.
@@ -39,6 +44,25 @@ It currently has:
 
 The private `PROAiCRM/AION-Service-CRM` repository remains the technical source of truth for product implementation. Public documentation must not be treated as proof that a feature is implemented, tested, or commercially validated.
 
+## Employee-first concept
+
+The experimental employee screen is built around a simple practical question:
+
+> What should the employee do next, and what could prevent the service from keeping its promise to the customer?
+
+The concept includes:
+
+- one primary next action;
+- express repair intake;
+- camera-based device identification as a proposed direction;
+- supplier spare-parts search as a proposed direction;
+- a personal work queue;
+- deadline-risk signals;
+- daily operational totals;
+- an explainable EVE recommendation.
+
+These interactions are visual prototype behavior only. They do not prove that camera recognition, supplier integrations, analytics or EVE intelligence are implemented in the product core.
+
 ## Product direction
 
 AION Service CRM is being designed around a practical service-center cycle:
@@ -64,13 +88,16 @@ The longer-term direction includes mobile express repair, QR order status, custo
 | Area | Current public status |
 |---|---|
 | Mobile visual direction | Demonstrated prototype |
+| Employee-first workspace | Demonstrated concept prototype |
 | Static repair workflow | Demonstrated prototype |
 | Real authentication | Not included |
 | Database and tenant isolation | Not included |
 | Production QR workflow | Not included |
 | Electronic consent and signature | Designed direction only |
+| Supplier parts search | Visual concept only |
 | Inventory and accounting | Not included |
 | AI-assisted camera search | Designed direction only |
+| EVE operational guidance | Visual concept only |
 | Commercial effectiveness | Not yet proven |
 
 ## Architecture principles
@@ -89,16 +116,18 @@ The product direction follows these AION principles:
 ## Repository structure
 
 ```text
-.github/workflows/   GitHub automation
-index.html           demo entry point
-README.md            public scope and safety boundary
+.github/workflows/          GitHub automation
+app-employee-concept.html   experimental employee-first prototype
+index.html                  current demo entry point
+README.md                   public scope and safety boundary
+docs/                       public documentation
 ```
 
 Additional files may exist as the public demo evolves. The repository structure itself is not evidence of production readiness.
 
 ## Running the demo
 
-For a local review, download or clone the repository and open `index.html` in a modern browser. Some browser features may behave differently when opened directly from the file system.
+For a local review, download or clone the repository and open `index.html` or `app-employee-concept.html` in a modern browser. Some browser features may behave differently when opened directly from the file system.
 
 ```bash
 git clone https://github.com/PROAiCRM/aion-service-crm-demo.git
@@ -109,9 +138,9 @@ cd aion-service-crm-demo
 
 Planned public-showcase work:
 
-1. improve the repository presentation;
-2. add verified screenshots and a visual overview;
-3. publish a stable browser demo;
+1. verify the employee-first concept on the owner's smartphone;
+2. keep only interactions that reduce employee effort or operational risk;
+3. add verified screenshots and a visual overview;
 4. document the difference between concept, prototype and implemented product;
 5. add release notes when a public demo version is explicitly approved.
 
