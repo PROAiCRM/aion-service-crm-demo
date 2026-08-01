@@ -1,0 +1,31 @@
+/* Commercial v7.5 — interaction and dock pass */
+html{scroll-padding-bottom:var(--v75-bottom-clearance,164px)!important}
+.app-shell{padding-bottom:calc(var(--v75-bottom-clearance,164px) + env(safe-area-inset-bottom))!important}
+.queue-section{padding-bottom:34px!important}
+.bottom-dock{height:auto!important;bottom:calc(5px + env(safe-area-inset-bottom))!important}
+.nav-item{height:50px!important}
+
+.v75-sheet{max-height:min(74vh,680px)!important;overflow:auto!important;overscroll-behavior:contain!important;padding-bottom:calc(18px + env(safe-area-inset-bottom))!important}
+.v75-search-sheet{min-height:0!important}
+.v75-search-input{font-size:18px!important}
+.v75-search-counter{margin:8px 2px 10px;color:#69b8ff;font-size:12px;letter-spacing:.03em}
+.v75-search-empty{margin:12px 0;padding:18px;border:1px dashed rgba(84,151,238,.65);border-radius:16px;text-align:center;color:#91a2bb}
+.v75-search-result[hidden]{display:none!important}
+
+.v75-qr-sheet{max-height:min(68vh,610px)!important}
+.v75-camera-button{min-height:90px!important}
+.v75-qr-preview{min-height:185px!important;max-height:245px!important;display:grid!important;place-items:center!important;overflow:hidden!important;position:relative!important}
+.v75-qr-preview img{width:100%!important;height:100%!important;object-fit:cover!important;border-radius:16px!important}
+.v75-qr-status{position:absolute;left:14px;right:14px;bottom:12px;padding:9px 11px;border-radius:12px;background:rgba(2,9,20,.78);backdrop-filter:blur(12px);color:#c7d7ec;font-size:11px;text-align:center}
+
+html[data-theme=light] .v75-search-counter{color:#1976c7}
+html[data-theme=light] .v75-search-empty{color:#5a6c85;border-color:#8baad2}
+html[data-theme=light] .v75-qr-status{background:rgba(238,245,253,.86);color:#243650}
+
+@media(max-width:390px){
+  :root{--v75-bottom-clearance:170px}
+  .bottom-dock{width:calc(100% - 16px)!important}
+  .nav-item{height:48px!important}
+  .v75-sheet{max-height:70vh!important}
+  .v75-qr-preview{min-height:160px!important;max-height:210px!important}
+}
