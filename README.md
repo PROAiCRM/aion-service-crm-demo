@@ -6,6 +6,14 @@
 ![Maturity](https://img.shields.io/badge/maturity-prototype-f59e0b)
 ![Data](https://img.shields.io/badge/data-demo%20only-16a34a)
 
+## Open the public demo
+
+**Browser demo:** https://proaicrm.github.io/aion-service-crm-demo/
+
+Use the demo for visual and interaction review only. A working page is not evidence of production readiness, security verification or commercial validation.
+
+Read the public review boundary: [`docs/PUBLIC_DEMO_OVERVIEW.md`](docs/PUBLIC_DEMO_OVERVIEW.md)
+
 ## What this repository is
 
 This repository presents the owner-approved visual direction and selected interaction concepts for **AION Service CRM** — a future operating system for smartphone service businesses.
@@ -89,9 +97,10 @@ The product direction follows these AION principles:
 ## Repository structure
 
 ```text
-.github/workflows/   GitHub automation
-index.html           demo entry point
-README.md            public scope and safety boundary
+.github/workflows/              GitHub automation
+index.html                      demo entry point
+docs/PUBLIC_DEMO_OVERVIEW.md   public review and evidence boundary
+README.md                       public scope and safety boundary
 ```
 
 Additional files may exist as the public demo evolves. The repository structure itself is not evidence of production readiness.
@@ -109,9 +118,9 @@ cd aion-service-crm-demo
 
 Planned public-showcase work:
 
-1. improve the repository presentation;
+1. verify the browser demo on a real smartphone;
 2. add verified screenshots and a visual overview;
-3. publish a stable browser demo;
+3. keep the public maturity map aligned with evidence;
 4. document the difference between concept, prototype and implemented product;
 5. add release notes when a public demo version is explicitly approved.
 
