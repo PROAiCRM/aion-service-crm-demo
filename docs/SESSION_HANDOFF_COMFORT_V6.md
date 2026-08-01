@@ -5,7 +5,7 @@ Date: 2026-08-01
 ## Done
 
 - published `app-v6.html`, `app-v6.css` and `app-v6.js`;
-- switched GitHub Pages entry point from v5 to v6;
+- switched GitHub Pages entry point from v5 to v6 and refreshed the query parameter for Safari cache control;
 - replaced personal greeting with `Главное на сегодня`;
 - compacted the global top shell;
 - removed the duplicated Home Modules block;
@@ -13,7 +13,10 @@ Date: 2026-08-01
 - added QR device lookup to Clients;
 - moved theme, notifications, profile, quick access, language and AION Basic entry points into More/Settings;
 - added touch-friendly module assignment, ordering, visibility and reset with local persistence;
-- documented decision and limited evidence;
+- completed JavaScript syntax validation;
+- completed 11/11 static checks;
+- completed a local mobile Chromium interaction smoke: workspace navigation, Clients QR opening, module movement, Dark/Light switch and layout reset passed with zero captured page errors;
+- documented decision and bounded evidence;
 - updated the main private-project PR with maturity and safety boundaries.
 
 ## Decisions
@@ -42,7 +45,7 @@ Date: 2026-08-01
 
 ## Stop point
 
-Comfort v6 source and documentation are committed to the public demo `main` branch, and `index.html` points to v6.
+Comfort v6 source, decision, static evidence and browser smoke evidence are committed to the public demo `main` branch. `index.html` points to `app-v6.html?v=20260801-2`.
 
 ## Next mandatory step
 
