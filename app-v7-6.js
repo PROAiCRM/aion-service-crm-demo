@@ -1,144 +1,77 @@
 (()=>{
-  const text=e=>(e?.textContent||'').replace(/\s+/g,' ').trim();
-  const norm=s=>(s||'').toLowerCase().replace(/[^a-zа-яё0-9]+/gi,'');
-  const vv=window.visualViewport;
-  let baseline=vv?.height||innerHeight;
-  let focusTimer=0;
-
-  function viewRoot(labels){
-    const set=new Set(labels);
-    const h=[...document.querySelectorAll('h1,h2')].find(e=>set.has(text(e)));
-    return h?.closest('.view,[data-view],.workspace,[data-workspace]')||h?.parentElement?.parentElement||null;
-  }
-
-  function directCards(root,pattern){
-    if(!root) return [];
-    const candidates=[...root.querySelectorAll('button,a,article,section,li,div')]
-      .filter(e=>pattern.test(text(e)));
-    return candidates.filter(e=>![...e.children].some(ch=>pattern.test(text(ch))))
-      .filter(e=>{
-        const r=e.getBoundingClientRect();
-        return r.width>innerWidth*.68&&r.height>58&&r.height<230;
-      });
-  }
-
-  function bindFilter(root,input,cards,emptyText){
-    if(!root||!input||!cards.length) return;
-    input.classList.add('v76-search-field');
-    input.type='search';
-    input.setAttribute('inputmode','search');
-    input.setAttribute('enterkeyhint','search');
-    input.setAttribute('autocomplete','off');
-    input.setAttribute('autocorrect','off');
-    input.setAttribute('spellcheck','false');
-
-    let empty=root.querySelector('.v76-empty');
-    if(!empty){
-      empty=document.createElement('div');
-      empty.className='v76-empty';
-      empty.textContent=emptyText;
-      cards[cards.length-1].insertAdjacentElement('afterend',empty);
-    }
-
-    const apply=()=>{
-      const q=norm(input.value);
-      let visible=0;
-      cards.forEach(card=>{
-        const show=!q||norm(text(card)).includes(q);
-        card.hidden=!show;
-        card.style.setProperty('display',show?'':'none',show?'':'important');
-        if(show) visible++;
-      });
-      empty.hidden=visible!==0;
-      root.dataset.v76Results=String(visible);
-    };
-
-    if(!input.dataset.v76Bound){
-      input.dataset.v76Bound='1';
-      input.addEventListener('input',apply);
-      input.addEventListener('search',apply);
-      input.addEventListener('change',apply);
-    }
-    apply();
-  }
-
-  function setupWorkspaceSearch(){
-    const orders=viewRoot(['Заказы','Orders']);
-    if(orders){
-      const input=orders.querySelector('input[type="search"],input:not([type="hidden"])');
-      const cards=directCards(orders,/№?1254[1-4]|#?A-10/);
-      bindFilter(orders,input,cards,'Заказ не найден');
-    }
-
-    const clients=viewRoot(['Клиенты','Clients']);
-    if(clients){
-      const input=clients.querySelector('input[type="search"],input:not([type="hidden"])');
-      const cards=directCards(clients,/Иван Петров|Анна Кузнецова|Сергей Дмитриев|Ольга Морозова|Ivan Petrov|Anna Kuznetsova|Sergey Dmitriev|Olga Morozova/);
-      bindFilter(clients,input,cards,'Клиент не найден');
-    }
-  }
-
-  function setViewport(){
-    const h=vv?.height||innerHeight;
-    const top=vv?.offsetTop||0;
-    const active=document.activeElement;
-    const editing=!!active&&active.matches?.('input,textarea,select,[contenteditable="true"]');
-    if(!editing&&h>baseline-80) baseline=Math.max(baseline,h);
-    const keyboard=editing&&(baseline-h>120||h<innerHeight*.72);
-    document.documentElement.style.setProperty('--v76-vh',`${Math.round(h)}px`);
-    document.documentElement.style.setProperty('--v76-vtop',`${Math.round(top)}px`);
-    document.body.classList.toggle('v76-keyboard',keyboard);
-    if(!editing) document.body.classList.remove('v76-focus');
-  }
-
-  function keepFocusedVisible(target){
-    clearTimeout(focusTimer);
-    focusTimer=setTimeout(()=>{
-      setViewport();
-      if(!target?.isConnected||!vv) return;
-      const r=target.getBoundingClientRect();
-      const top=vv.offsetTop+12;
-      const bottom=vv.offsetTop+vv.height-18;
-      if(r.bottom>bottom) scrollBy({top:r.bottom-bottom+18,behavior:'smooth'});
-      else if(r.top<top) scrollBy({top:r.top-top-12,behavior:'smooth'});
-    },260);
-  }
-
-  function focusIn(e){
-    const t=e.target;
-    if(!t.matches?.('input,textarea,select,[contenteditable="true"]')) return;
-    document.body.classList.add('v76-focus');
-    setViewport();
-    keepFocusedVisible(t);
-  }
-
-  function focusOut(){
-    clearTimeout(focusTimer);
-    setTimeout(()=>{
-      document.body.classList.remove('v76-focus','v76-keyboard');
-      setViewport();
-    },220);
-  }
-
-  function hardenWidth(){
-    document.documentElement.style.setProperty('--v76-doc-width',`${document.documentElement.clientWidth}px`);
-  }
-
-  function run(){setupWorkspaceSearch();setViewport();hardenWidth()}
-  let queued=false;
-  const schedule=()=>{
-    if(queued) return;
-    queued=true;
-    requestAnimationFrame(()=>{queued=false;run()});
-  };
-
-  new MutationObserver(schedule).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class','hidden','style']});
-  document.addEventListener('focusin',focusIn,true);
-  document.addEventListener('focusout',focusOut,true);
-  document.addEventListener('click',()=>[30,120,320].forEach(ms=>setTimeout(run,ms)),true);
-  vv?.addEventListener('resize',schedule);
-  vv?.addEventListener('scroll',schedule);
-  addEventListener('resize',schedule);
-  addEventListener('orientationchange',()=>setTimeout(run,300));
-  run();
+'use strict';
+const orders=[
+{id:'12541',model:'iPhone 15 Pro',client:'Иван П.',status:'В работе',price:'24 500 ₽',time:'09:15',kind:'dark'},
+{id:'12542',model:'iPhone 14',client:'Анна К.',status:'Диагностика',price:'3 500 ₽',time:'10:20',kind:'gold'},
+{id:'12543',model:'Galaxy S23',client:'Сергей Д.',status:'К выдаче',price:'6 490 ₽',time:'11:05',kind:'green'},
+{id:'12544',model:'POCO X5',client:'Мария С.',status:'В работе',price:'8 900 ₽',time:'12:30',kind:'dark'}
+];
+const clients=[
+{name:'Иван Петров',initials:'ИП',device:'iPhone 15 Pro',count:'4 заказа',price:'24 500 ₽',status:'Активный заказ'},
+{name:'Анна Кузнецова',initials:'АК',device:'iPhone 14',count:'2 заказа',price:'3 500 ₽',status:'Диагностика'},
+{name:'Сергей Дмитриев',initials:'СД',device:'Galaxy S23',count:'3 заказа',price:'6 490 ₽',status:'К выдаче'},
+{name:'Ольга Морозова',initials:'ОМ',device:'iPhone 13',count:'1 заказ',price:'2 900 ₽',status:'Завершён'}
+];
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const normalize=s=>(s||'').toLowerCase().replace(/[№#\s()+-]/g,'');
+function phoneClass(kind){return kind==='gold'?' gold':kind==='green'?' green':''}
+function renderOrders(list=orders){
+ const host=$('#ordersList'); if(!host)return;
+ host.innerHTML=list.map(o=>`<article class="order-row panel" data-order="${o.id}"><div class="device-thumb${phoneClass(o.kind)}"></div><div class="row-main"><strong>№${o.id} · ${o.model}</strong><span>${o.client} · ${o.status}</span></div><div class="row-side"><strong>${o.price}</strong><span>${o.time}</span></div></article>`).join('')||'<div class="empty">Заказы не найдены</div>';
+}
+function renderClients(list=clients){
+ const host=$('#clientsList'); if(!host)return;
+ host.innerHTML=list.map(c=>`<article class="client-row panel"><div class="avatar">${c.initials}</div><div class="row-main"><strong>${c.name}</strong><span>${c.device} · ${c.count}</span></div><div class="row-side"><strong>${c.price}</strong><span>${c.status}</span></div></article>`).join('')||'<div class="empty">Клиенты не найдены</div>';
+}
+function filterOrders(q,status='all'){
+ const n=normalize(q);
+ return orders.filter(o=>{
+  const text=normalize(`${o.id} ${o.model} ${o.client} ${o.status}`);
+  const statusOk=status==='all'||(status==='work'&&o.status==='В работе')||(status==='ready'&&o.status==='К выдаче');
+  return statusOk&&(!n||text.includes(n));
+ });
+}
+function openPage(name){
+ $$('.page').forEach(p=>p.classList.toggle('active',p.dataset.page===name));
+ $$('.nav').forEach(b=>b.classList.toggle('active',b.dataset.nav===name));
+ window.scrollTo({top:0,behavior:'instant'});
+}
+function openSheet(id){const m=$(`#${id}`);if(m){m.classList.add('open');document.body.style.overflow='hidden';setTimeout(()=>$('input:not([type=file]),textarea',m)?.focus(),120)}}
+function closeSheets(){ $$('.modal-backdrop.open').forEach(m=>m.classList.remove('open'));document.body.style.overflow=''; }
+function renderSearchResults(q){
+ const list=filterOrders(q); const host=$('#searchResults'); const count=$('#resultCount'); if(!host)return;
+ if(count) count.textContent=list.length?`Найдено: ${list.length}`:'Ничего не найдено';
+ host.innerHTML=list.map(o=>`<button class="result" type="button" data-open-order="${o.id}"><strong>№${o.id} · ${o.model}</strong><span>${o.client} · ${o.status}</span></button>`).join('')||'<div class="empty">Заказ не найден</div>';
+}
+function previewFile(input,preview,note){
+ const file=input.files?.[0]; if(!file)return; const url=URL.createObjectURL(file); preview.innerHTML=`<img alt="Локальный кадр" src="${url}">`; note.textContent='Кадр получен локально. Распознавание в демо не подключено.';
+}
+function applyLanguage(lang){
+ document.documentElement.lang=lang;
+ $$('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+ const map={
+  ru:{home:'Главная',orders:'Заказы',repair:'Ремонт',clients:'Клиенты',more:'Ещё'},
+  en:{home:'Home',orders:'Orders',repair:'Repair',clients:'Clients',more:'More'}
+ }[lang];
+ $$('.nav').forEach(b=>{const k=b.dataset.nav;const s=$('small',b);if(s)s.textContent=map[k]});
+}
+function setupKeyboard(){
+ const vv=window.visualViewport;if(!vv)return; const run=()=>document.body.classList.toggle('keyboard',vv.height<window.innerHeight*.72);vv.addEventListener('resize',run);vv.addEventListener('scroll',run);run();
+}
+document.addEventListener('click',e=>{
+ const nav=e.target.closest('[data-nav]'); if(nav){openPage(nav.dataset.nav);return}
+ const act=e.target.closest('[data-action]'); if(act){openSheet(act.dataset.action);return}
+ const close=e.target.closest('[data-close]'); if(close){closeSheets();return}
+ const lang=e.target.closest('[data-lang]'); if(lang){applyLanguage(lang.dataset.lang);return}
+ const theme=e.target.closest('[data-theme-toggle]'); if(theme){const next=document.documentElement.dataset.theme==='light'?'dark':'light';document.documentElement.dataset.theme=next;theme.textContent=next==='light'?'☀':'☾';return}
+ const openOrder=e.target.closest('[data-open-order]'); if(openOrder){closeSheets();openPage('repair');return}
+ if(e.target.classList.contains('modal-backdrop'))closeSheets();
+});
+$('#ordersSearch')?.addEventListener('input',e=>renderOrders(filterOrders(e.target.value,$('.filter.active')?.dataset.filter||'all')));
+$$('.filter').forEach(b=>b.addEventListener('click',()=>{ $$('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderOrders(filterOrders($('#ordersSearch')?.value||'',b.dataset.filter));}));
+$('#clientsSearch')?.addEventListener('input',e=>{const n=normalize(e.target.value);renderClients(clients.filter(c=>!n||normalize(`${c.name} ${c.device} ${c.status}`).includes(n)))});
+$('#sheetSearchInput')?.addEventListener('input',e=>renderSearchResults(e.target.value));
+$('#qrFile')?.addEventListener('change',e=>previewFile(e.target,$('#qrPreview'),$('#qrNote')));
+$('#photoFile')?.addEventListener('change',e=>previewFile(e.target,$('#photoPreview'),$('#photoNote')));
+renderOrders();renderClients();renderSearchResults('');setupKeyboard();applyLanguage('ru');
 })();
