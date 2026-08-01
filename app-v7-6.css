@@ -1,0 +1,51 @@
+/* Commercial v7.6 — iPhone keyboard and viewport pass */
+html,body{max-width:100%!important;overflow-x:hidden!important}
+*,*::before,*::after{box-sizing:border-box}
+.app-shell,.view,[data-view],.workspace,[data-workspace],main,section{max-width:100%!important}
+.topbar,.brand,.top-controls{min-width:0!important}
+input,textarea,select,[contenteditable="true"]{
+  font-size:16px!important;
+  max-width:100%!important;
+  min-width:0!important;
+  -webkit-text-size-adjust:100%!important;
+}
+.v76-search-field{font-size:17px!important;width:100%!important;transform:none!important;zoom:1!important}
+.v76-empty{margin:14px 0;padding:18px;border:1px dashed rgba(84,151,238,.58);border-radius:16px;text-align:center;color:#91a2bb}
+.v76-empty[hidden]{display:none!important}
+
+body.v76-focus .bottom-dock,
+body.v76-keyboard .bottom-dock{
+  opacity:0!important;
+  pointer-events:none!important;
+  transform:translate3d(0,calc(100% + 28px),0)!important;
+}
+body.v76-keyboard .app-shell{
+  padding-bottom:24px!important;
+}
+body.v76-keyboard .v75-sheet,
+body.v76-keyboard [role="dialog"],
+body.v76-keyboard [aria-modal="true"]{
+  max-height:calc(var(--v76-vh,100dvh) - 18px)!important;
+  overflow:auto!important;
+  overscroll-behavior:contain!important;
+  padding-bottom:18px!important;
+}
+.bottom-dock{
+  transition:opacity .18s ease,transform .22s ease!important;
+  will-change:opacity,transform;
+}
+
+@supports (-webkit-touch-callout:none){
+  input,textarea,select,[contenteditable="true"]{font-size:16px!important}
+  .v76-search-field{font-size:17px!important}
+}
+
+html[data-theme=light] .v76-empty{color:#536680;border-color:#87a7d0}
+
+@media(max-width:390px){
+  .app-shell{width:100%!important}
+  .topbar{width:100%!important}
+  .brand{max-width:52%!important}
+  .top-controls{max-width:48%!important}
+  .v76-search-field{font-size:17px!important}
+}
