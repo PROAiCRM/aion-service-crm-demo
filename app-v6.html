@@ -1,0 +1,143 @@
+<!doctype html>
+<html data-theme="dark" lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#030713" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<title>AION Service CRM — Comfort v6</title>
+<link href="app-v6.css?v=20260801-1" rel="stylesheet"/>
+</head>
+<body>
+<main class="app v6-app">
+<div class="statusbar"><span id="clock">9:41</span><div class="status-icons"><div class="bars"><i></i><i></i><i></i><i></i></div><span>⌁</span><div class="battery"></div></div></div>
+<header class="top-shell v6-top">
+  <div class="brand"><div class="logo"></div><div class="brand-copy"><strong>AION</strong><small>SERVICE CRM</small></div></div>
+  <div class="view-marker"><small>РАБОЧАЯ ЗОНА</small><strong id="viewTitle">Главная</strong></div>
+</header>
+<div class="view-stack">
+<section class="view active" data-view="home">
+  <section class="today-strip">
+    <div class="today-card"><div class="eyebrow"><i></i><span>Главное на сегодня</span></div><h1>2 к выдаче · 1 просрочен</h1><p>Сначала быстрые финалы — очередь станет легче.</p></div>
+    <button class="eve-mini" id="eveBtn"><div class="eve-orb"></div><span><b>EvE</b><small>Следующий шаг</small><strong>Выдать iPhone 11</strong></span></button>
+  </section>
+  <div class="metrics">
+    <article class="metric"><small>Новые</small><strong>4</strong><span>+2 сегодня</span></article>
+    <article class="metric"><small>В работе</small><strong>7</strong><span>1 просрочен</span></article>
+    <article class="metric ready"><small>К выдаче</small><strong>2</strong><span>ОТК пройден</span></article>
+    <article class="metric"><small>Выручка</small><strong>48 750 ₽</strong><span>сегодня</span></article>
+  </div>
+  <section class="action-row">
+    <button class="new-repair open-intake"><div class="plusbox"><svg viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></svg></div><div><b>Новый ремонт</b><small>AION подготовит клиента, устройство и условия</small></div><span class="arrow"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span></button>
+    <div class="quick-stack">
+      <button class="quick-action" data-view-target="orders"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span><b>Найти</b><small>заказ</small></span></button>
+      <button class="quick-action" data-toast="Выдача: 2 заказа готовы"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg><span><b>Выдать</b><small>2 готовы</small></span></button>
+    </div>
+  </section>
+  <section class="panel work-tools-panel">
+    <div class="panel-head"><div><h2>Рабочие инструменты</h2><p>Порядок можно изменить в «Ещё → Рабочее пространство»</p></div><button data-view-target="more">Настроить ›</button></div>
+    <div class="movable-grid" id="homeModules"></div>
+  </section>
+  <section class="panel">
+<div class="panel-head"><h2>Рабочая очередь</h2><button data-view-target="orders">Все 12 ›</button></div>
+<div class="orders-grid">
+<button class="order-card active" data-order="0"><div class="order-head"><span class="order-id">#A-10234</span><span class="tag">В работе</span></div><div class="device-row"><div class="phone"></div><div class="device-copy"><b>iPhone 14 Pro</b><small>Замена экрана</small></div></div><div class="order-foot"><span>Иван П.</span><span>11:24</span></div><div class="progress"><i style="--w:34%;--c:#2677ff;--c2:#4555ff"></i></div></button>
+<button class="order-card" data-order="1"><div class="order-head"><span class="order-id">#A-10233</span><span class="tag">Диагностика</span></div><div class="device-row"><div class="phone samsung"></div><div class="device-copy"><b>Samsung S23</b><small>Не заряжается</small></div></div><div class="order-foot"><span>Анна К.</span><span>10:58</span></div><div class="progress"><i style="--w:18%;--c:#7748ff;--c2:#a845ff"></i></div></button>
+<button class="order-card" data-order="2"><div class="order-head"><span class="order-id">#A-10232</span><span class="tag green">К выдаче</span></div><div class="device-row"><div class="phone green"></div><div class="device-copy"><b>iPhone 11</b><small>Замена АКБ</small></div></div><div class="order-foot"><span>Сергей Д.</span><span>09:41</span></div><div class="progress"><i style="--w:100%;--c:#19bd7e;--c2:#2ae19b"></i></div></button>
+</div>
+</section>
+<section class="panel" id="currentOrder">
+<div class="workflow-head"><h2>Текущий заказ</h2><span class="number" id="currentId">#A-10234</span><span class="tag" id="currentTag">В работе</span></div>
+<div class="stage-row" id="stages"><div class="stage active"><span>1</span><small>Клиент</small></div><div class="stage"><span>2</span><small>Устройство</small></div><div class="stage"><span>3</span><small>Проблема</small></div><div class="stage"><span>4</span><small>Работы</small></div><div class="stage"><span>5</span><small>Оплата</small></div><div class="stage"><span>6</span><small>Выдача</small></div></div>
+<div class="current-summary"><div class="fact"><small>Клиент</small><b id="clientName">Иван Петров</b><span id="clientPhone">+7 900 123-45-67</span></div><div class="fact"><small>Устройство</small><b id="deviceName">iPhone 14 Pro</b><span id="deviceMeta">256 GB, Deep Purple</span></div><div class="fact"><small>Проблема</small><b id="problemName">Разбит экран</b><span id="problemMeta">Нет изображения</span></div><div class="fact"><small>Сумма</small><b id="amount">24 500 ₽</b></div></div>
+<div class="actions"><button class="action primary open-intake" id="continueBtn">Продолжить шаг 1 ›</button><button class="action" data-toast="Открыта карта заказа">Карта заказа</button><button class="action" data-toast="Квитанция готова к печати">Квитанция</button></div>
+</section>
+</section>
+<section class="view" data-view="orders"><div class="screen-title"><div><h1>Заказы</h1><p>Очередь и следующие действия</p></div></div><label class="search-box"><svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input placeholder="Номер, клиент или устройство"/></label><div class="chips"><button class="chip active">Все 12</button><button class="chip">Новые 4</button><button class="chip">В работе 7</button><button class="chip">К выдаче 2</button></div><div class="list-stack">
+<button class="list-row" data-order-open="0"><div class="thumb">📱</div><div class="copy"><b>#A-10234 · iPhone 14 Pro</b><span>Иван Петров · Замена экрана</span></div><div class="side"><b>24 500 ₽</b><span>В работе</span></div></button>
+<button class="list-row" data-order-open="1"><div class="thumb">📱</div><div class="copy"><b>#A-10233 · Samsung S23</b><span>Анна Кузнецова · Не заряжается</span></div><div class="side"><b>3 500 ₽</b><span>Диагностика</span></div></button>
+<button class="list-row" data-order-open="2"><div class="thumb">📱</div><div class="copy"><b>#A-10232 · iPhone 11</b><span>Сергей Дмитриев · Замена АКБ</span></div><div class="side"><b>6 490 ₽</b><span>К выдаче</span></div></button>
+<button class="list-row" data-toast="Демонстрационный заказ"><div class="thumb">📱</div><div class="copy"><b>#A-10231 · iPad Air</b><span>Мария Орлова · Диагностика</span></div><div class="side"><b>1 500 ₽</b><span>Новый</span></div></button>
+</div></section>
+<section class="view" data-view="clients">
+  <div class="screen-title"><div><h1>Клиенты</h1><p>Найти человека, устройство или обращение</p></div></div>
+  <section class="client-find-panel">
+    <label class="search-box client-main-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input placeholder="Имя, телефон или устройство"/></label>
+    <button class="client-scan-action" id="clientQrBtn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM19 14h2v2M18 19h3v2M14 19h2v2"/></svg><span><b>Сканировать QR устройства</b><small>Открыть клиента, заказ или статус</small></span></button>
+  </section>
+  <div class="movable-grid client-tools" id="clientModules"></div>
+  <div class="list-stack">
+<button class="list-row client-row" data-toast="Карточка Ивана Петрова"><div class="initials">ИП</div><div class="copy"><b>Иван Петров</b><span>iPhone 14 Pro · 4 обращения</span></div><div class="side"><b>24 500 ₽</b><span>Активный заказ</span></div></button>
+<button class="list-row client-row" data-toast="Карточка Анны Кузнецовой"><div class="initials">АК</div><div class="copy"><b>Анна Кузнецова</b><span>Samsung S23 · 2 обращения</span></div><div class="side"><b>3 500 ₽</b><span>Диагностика</span></div></button>
+<button class="list-row client-row" data-toast="Карточка Сергея Дмитриева"><div class="initials">СД</div><div class="copy"><b>Сергей Дмитриев</b><span>iPhone 11 · 3 обращения</span></div><div class="side"><b>6 490 ₽</b><span>К выдаче</span></div></button>
+</div>
+</section>
+<section class="view" data-view="more">
+  <div class="screen-title"><div><h1>Ещё</h1><p>Настройки и рабочее пространство</p></div></div>
+  <section class="panel settings-panel">
+    <div class="panel-head"><div><h2>Настройки</h2><p>Служебные действия убраны из рабочих экранов</p></div></div>
+    <div class="settings-grid">
+      <button class="setting-card" id="themeBtn"><span class="setting-icon"><svg id="themeIcon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg></span><span><b>Тема</b><small>Тёмная / светлая</small></span></button>
+      <button class="setting-card" id="bellBtn"><span class="setting-icon"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></span><span><b>Уведомления</b><small>3 требуют внимания</small></span></button>
+      <button class="setting-card" id="profileBtn"><span class="setting-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span><b>Профиль</b><small>Максим · владелец</small></span></button>
+      <button class="setting-card" id="quickBtn"><span class="setting-icon"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h6l-1 9 8-12h-6z"/></svg></span><span><b>Быстрый доступ</b><small>Ремонт, поиск, выдача</small></span></button>
+      <button class="setting-card" data-toast="Язык: RU / EN — продуктовая настройка"><span class="setting-icon">RU</span><span><b>Язык</b><small>Русский</small></span></button>
+      <button class="setting-card" data-toast="AION Basic — облегчённый профиль, пока не реализован"><span class="setting-icon">B</span><span><b>AION Basic</b><small>Для слабых устройств</small></span></button>
+    </div>
+  </section>
+  <section class="panel workspace-panel">
+    <div class="panel-head"><div><h2>Рабочее пространство</h2><p>Перемещайте модули между вкладками без изменения бизнес‑правил</p></div><button id="resetLayoutBtn">Сбросить</button></div>
+    <div class="module-manager" id="moduleManager"></div>
+  </section>
+  <section class="panel"><div class="panel-head"><div><h2>Модули вкладки «Ещё»</h2><p>Дополнительные зоны по выбранному порядку</p></div></div><div class="movable-grid" id="moreModules"></div></section>
+</section>
+</div>
+</main>
+<div class="dock-wrap"><nav class="dock">
+<button class="nav active" data-view-target="home"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V21h14V10.5M9 21v-6h6v6"/></svg><span>Главная</span></button>
+<button class="nav" data-view-target="orders"><svg viewBox="0 0 24 24"><rect height="18" rx="2" width="16" x="4" y="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>Заказы</span></button>
+<button aria-label="Новый ремонт" class="nav-center open-intake"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><small>Ремонт</small></button>
+<button class="nav" data-view-target="clients"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M17 11h4M19 9v4"/></svg><span>Клиенты</span></button>
+<button class="nav" data-view-target="more"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg><span>Ещё</span></button>
+</nav></div>
+<div aria-hidden="true" class="tool-sheet" id="qrSheet">
+  <div class="tool-sheet-card">
+    <div class="tool-sheet-head"><div><small>AION QR Assist · DEMO</small><h2>Поиск устройства по QR</h2></div><button class="tool-close" data-close-tool="qrSheet">×</button></div>
+    <div class="privacy-note"><strong>Камера запускается только по нажатию.</strong><span>Демо не отправляет кадр в сеть и не сохраняет его на сервере.</span></div>
+    <input accept="image/*" capture="environment" hidden id="qrPhotoInput" type="file"/>
+    <button class="camera-launch" id="qrCameraLaunch" type="button"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM19 14h2v2M18 19h3v2M14 19h2v2"/></svg><span><b>Открыть камеру</b><small>Навести на QR устройства или заказа</small></span></button>
+    <div class="photo-preview qr-preview" id="qrPreview"><div class="photo-placeholder"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM19 14h2v2M18 19h3v2M14 19h2v2"/></svg><span>После снимка здесь появится локальный предпросмотр</span></div></div>
+    <div class="qr-result" id="qrResult" hidden><small>РЕЗУЛЬТАТ ДЕМО</small><h3>#A-10232 · iPhone 11</h3><p>Сергей Дмитриев · готов к выдаче · ОТК пройден</p><button class="tool-primary" id="openQrOrder">Открыть заказ</button></div>
+  </div>
+</div>
+<div aria-hidden="true" class="tool-sheet" id="photoSheet">
+<div class="tool-sheet-card">
+<div class="tool-sheet-head"><div><small>AION Vision Assist · DEMO</small><h2>Поиск устройства по фото</h2></div><button class="tool-close" data-close-tool="photoSheet">×</button></div>
+<div class="privacy-note"><strong>Кадр остаётся на устройстве.</strong><span>В этой версии файл не загружается и не отправляется во внешние сервисы.</span></div>
+<input accept="image/*" capture="environment" hidden="" id="devicePhotoInput" type="file"/>
+<button class="camera-launch" id="cameraLaunch" type="button"><svg viewbox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3v12H4Z"></path><circle cx="12" cy="13" r="4"></circle></svg><span><b>Открыть камеру</b><small>Сфотографировать устройство</small></span></button>
+<div class="photo-preview" id="photoPreview"><div class="photo-placeholder"><svg viewbox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3v12H4Z"></path><circle cx="12" cy="13" r="4"></circle></svg><span>После снимка здесь появится локальный предпросмотр</span></div></div>
+<div class="vision-results" hidden="" id="visionResults">
+<div class="result-head"><b>Похожие модели</b><small>Подсказка, не автоматическое решение</small></div>
+<button class="model-option selected"><span><b>iPhone 14 Pro</b><small>Визуальное сходство · демо 86%</small></span><i>✓</i></button>
+<button class="model-option"><span><b>iPhone 14</b><small>Визуальное сходство · демо 71%</small></span><i></i></button>
+<button class="model-option"><span><b>iPhone 13 Pro</b><small>Визуальное сходство · демо 54%</small></span><i></i></button>
+<button class="tool-primary" id="confirmModel" type="button">Подтвердить iPhone 14 Pro</button>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="tool-sheet" id="partsSheet">
+<div class="tool-sheet-card">
+<div class="tool-sheet-head"><div><small>AION Supplier Compare · DEMO</small><h2>Запчасти у поставщиков</h2></div><button class="tool-close" data-close-tool="partsSheet">×</button></div>
+<label class="supplier-search"><svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input aria-label="Поиск запчасти" id="partQuery" value="Дисплей iPhone 14 Pro"/></label>
+<div class="supplier-tabs"><button class="supplier-tab active" data-sort="balanced">Рекомендация</button><button class="supplier-tab" data-sort="price">Цена</button><button class="supplier-tab" data-sort="speed">Срок</button></div>
+<div class="supplier-list" id="supplierList"></div>
+<div class="supplier-boundary"><strong>Демонстрационные данные.</strong><span>Нет реального подключения к прайсам, резерву или оплате поставщиков.</span></div>
+</div>
+</div>
+<div aria-hidden="true" class="sheet" id="sheet"><div class="sheet-card"><div class="sheet-head"><div><small>AION Service CRM</small><h2>Экспресс-приём</h2></div><button class="close" id="closeSheet">×</button></div><div class="intake-progress" id="intakeProgress"><i class="done"></i><i></i><i></i><i></i><i></i><i></i></div><div id="stepHost"></div><div class="sheet-actions"><button class="secondary" id="backStep">Назад</button><button class="next" id="nextStep">Подтвердить и продолжить</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script src="app-v6.js?v=20260801-1"></script>
+</body>
+</html>
