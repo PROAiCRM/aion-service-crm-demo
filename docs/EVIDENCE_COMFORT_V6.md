@@ -2,9 +2,9 @@
 
 Date: 2026-08-01
 
-Evidence scope: local static-source, HTML structure and JavaScript syntax validation only.
+Evidence scope: local static-source validation, JavaScript syntax validation and a headless Chromium interaction smoke against the assembled local prototype assets.
 
-## Local checks
+## Static checks
 
 Result: 11/11 PASS
 
@@ -28,6 +28,23 @@ HTML inspection:
 - four workspaces present: Home, Orders, Clients, More;
 - three tool sheets present: QR, Photo, Suppliers;
 - one CSS and one JavaScript entry point for v6.
+
+## Browser interaction smoke
+
+Environment: local source assembled with the existing v5 base styles and v6 override assets, rendered in headless Chromium at a 430 × 1200 mobile viewport.
+
+Result: PASS
+
+- initial workspace: Home;
+- default Home modules: 3;
+- navigation Home → Clients: PASS;
+- Clients QR sheet opens: PASS;
+- navigation Clients → More: PASS;
+- module manager rows: 6;
+- moving the QR module from Home to Clients updates the rendered module count: PASS;
+- Dark → Light theme switch: PASS;
+- reset to the standard module layout: PASS;
+- runtime page errors captured during the scenario: 0.
 
 ## Not proven
 
