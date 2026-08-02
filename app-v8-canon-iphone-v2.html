@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#01040b">
+<title>AION Service CRM — iPhone Canon v2</title>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;background:#01040b;overflow:hidden}
+body{display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#app{position:relative;width:min(100vw,calc(100svh * 320 / 569));aspect-ratio:320/569;max-height:100svh;background:#01040b;overflow:hidden;isolation:isolate}
+#screen{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none}
+.hit{position:absolute;border:0;background:transparent;padding:0;margin:0;cursor:pointer;z-index:3}
+.hit:focus-visible{outline:2px solid #55a8ff;outline-offset:-4px;border-radius:12px}
+.nav{bottom:1%;height:8.8%;width:19.5%}.nav-home{left:1%}.nav-orders{left:20.4%}.nav-repair{left:40.1%}.nav-clients{left:59.8%}.nav-more{left:79.4%}
+.home-action{top:36.2%;height:16.8%;width:31.5%}.home-action.row2{top:53.1%;height:15.3%}.a1{left:2.8%}.a2{left:34.4%}.a3{left:66%}
+.orders-search{left:3.7%;top:18.3%;width:92.5%;height:7.2%}.repair-new{left:3.3%;top:21.3%;width:93.4%;height:18.1%}
+.clients-search{left:3.4%;top:19.4%;width:93.1%;height:6.5%}.clients-qr{left:3.5%;top:27.7%;width:46%;height:12.4%}.clients-find{left:50.5%;top:27.7%;width:46%;height:12.4%}
+#status{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:#8fa0b8;font-size:14px;line-height:1.45;z-index:2}
+.ready #status{display:none}.failed #status{color:#ff8799}
+.retry{margin-top:14px;border:1px solid #2e79ce;border-radius:12px;background:#071a31;color:#dcecff;padding:11px 16px;font-weight:600}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@supports(height:100dvh){#app{width:min(100vw,calc(100dvh * 320 / 569));max-height:100dvh}}
+</style>
+</head>
+<body>
+<div id="app" role="application" aria-label="AION Service CRM — Canon Fidelity Prototype">
+  <div id="status">Загружаем канонический экран…</div>
+  <img id="screen" alt="" draggable="false" decoding="async">
+
+  <button class="hit nav nav-home" data-page="home"><span class="sr">Главная</span></button>
+  <button class="hit nav nav-orders" data-page="orders"><span class="sr">Заказы</span></button>
+  <button class="hit nav nav-repair" data-page="repair"><span class="sr">Ремонт</span></button>
+  <button class="hit nav nav-clients" data-page="clients"><span class="sr">Клиенты</span></button>
+  <button class="hit nav nav-more" data-page="more"><span class="sr">Ещё</span></button>
+
+  <div id="homeHits">
+    <button class="hit home-action a1" data-page="repair"><span class="sr">Новый ремонт</span></button>
+    <button class="hit home-action a2" data-page="orders"><span class="sr">Найти заказ</span></button>
+    <button class="hit home-action a3" data-page="repair"><span class="sr">Выдать</span></button>
+    <button class="hit home-action row2 a1"><span class="sr">Прайс и поставщики</span></button>
+    <button class="hit home-action row2 a2"><span class="sr">QR</span></button>
+    <button class="hit home-action row2 a3"><span class="sr">Фото</span></button>
+  </div>
+  <div id="ordersHits" hidden><button class="hit orders-search"><span class="sr">Поиск заказа</span></button></div>
+  <div id="repairHits" hidden><button class="hit repair-new"><span class="sr">Новый ремонт</span></button></div>
+  <div id="clientsHits" hidden>
+    <button class="hit clients-search"><span class="sr">Поиск клиента</span></button>
+    <button class="hit clients-qr"><span class="sr">QR</span></button>
+    <button class="hit clients-find" data-page="orders"><span class="sr">Найти заказ</span></button>
+  </div>
+</div>
+<script>
+(() => {
+  'use strict';
+  const VERSION='20260802-iphone-v2';
+  const pages=['home','orders','repair','clients','more'];
+  const app=document.getElementById('app');
+  const status=document.getElementById('status');
+  const screen=document.getElementById('screen');
+  const groups={home:document.getElementById('homeHits'),orders:document.getElementById('ordersHits'),repair:document.getElementById('repairHits'),clients:document.getElementById('clientsHits')};
+  const cache=new Map();
+  let current='home';
+
+  function fail(name,error){
+    console.error('AION screen load failed',name,error);
+    app.classList.remove('ready');app.classList.add('failed');
+    status.innerHTML=`Не удалось открыть экран «${name}».<br><button class="retry" type="button">Повторить</button>`;
+    status.querySelector('.retry')?.addEventListener('click',()=>show(name,true));
+  }
+
+  async function extractDataUri(name,force=false){
+    if(!force&&cache.has(name))return cache.get(name);
+    const url=new URL(`assets/v8/${name}.svg?v=${VERSION}${force?`&retry=${Date.now()}`:''}`,location.href);
+    const response=await fetch(url.toString(),{cache:'no-store',credentials:'same-origin'});
+    if(!response.ok)throw new Error(`HTTP ${response.status}: ${url}`);
+    const text=await response.text();
+    const match=text.match(/(?:href|xlink:href)=["'](data:image\/(?:webp|png|jpeg|jpg);base64,[^"']+)["']/i);
+    if(!match)throw new Error('Embedded image not found');
+    const uri=match[1].replace(/\s/g,'');
+    cache.set(name,uri);
+    return uri;
+  }
+
+  async function show(name,force=false){
+    if(!pages.includes(name))name='home';
+    current=name;
+    app.classList.remove('ready','failed');
+    status.textContent='Загружаем канонический экран…';
+    Object.entries(groups).forEach(([key,element])=>{element.hidden=key!==name});
+    try{
+      const uri=await extractDataUri(name,force);
+      await new Promise((resolve,reject)=>{
+        screen.onload=resolve;
+        screen.onerror=()=>reject(new Error('Safari image decode failed'));
+        screen.src=uri;
+      });
+      screen.alt=name;
+      app.classList.add('ready');
+      history.replaceState(null,'',`#${name}`);
+    }catch(error){fail(name,error)}
+  }
+
+  document.querySelectorAll('[data-page]').forEach(button=>button.addEventListener('click',()=>show(button.dataset.page)));
+  let x0=0,y0=0;
+  app.addEventListener('touchstart',event=>{const t=event.changedTouches[0];x0=t.clientX;y0=t.clientY},{passive:true});
+  app.addEventListener('touchend',event=>{const t=event.changedTouches[0],dx=t.clientX-x0,dy=t.clientY-y0;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.4){let i=pages.indexOf(current);i=dx<0?Math.min(pages.length-1,i+1):Math.max(0,i-1);show(pages[i])}},{passive:true});
+  const initial=location.hash.slice(1);show(pages.includes(initial)?initial:'home');
+  setTimeout(()=>pages.filter(name=>name!==current).forEach(name=>extractDataUri(name).catch(()=>{})),700);
+})();
+</script>
+</body>
+</html>
