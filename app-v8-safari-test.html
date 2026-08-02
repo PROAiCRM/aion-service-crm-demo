@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#01040b">
+<title>AION Service CRM — v8 Safari Test</title>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;background:#01040b;overflow:hidden}
+body{display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#app{position:relative;width:min(100vw,calc(100svh * 320 / 569));aspect-ratio:320/569;max-height:100svh;background:#01040b;overflow:hidden;isolation:isolate}
+.screen{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none}
+.hit{position:absolute;border:0;background:transparent;padding:0;margin:0;cursor:pointer;z-index:3}
+.hit:focus-visible{outline:2px solid #55a8ff;outline-offset:-4px;border-radius:12px}
+.nav{bottom:1%;height:8.8%;width:19.5%}.nav-home{left:1%}.nav-orders{left:20.4%}.nav-repair{left:40.1%}.nav-clients{left:59.8%}.nav-more{left:79.4%}
+.home-action{top:36.2%;height:16.8%;width:31.5%}.home-action.row2{top:53.1%;height:15.3%}.a1{left:2.8%}.a2{left:34.4%}.a3{left:66%}
+.orders-search{left:3.7%;top:18.3%;width:92.5%;height:7.2%}.repair-new{left:3.3%;top:21.3%;width:93.4%;height:18.1%}
+.clients-search{left:3.4%;top:19.4%;width:93.1%;height:6.5%}.clients-qr{left:3.5%;top:27.7%;width:46%;height:12.4%}.clients-find{left:50.5%;top:27.7%;width:46%;height:12.4%}
+#overlay{position:absolute;inset:0;z-index:5;display:none;background:#01040b}#overlay.active{display:block}
+#overlayImage{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none}
+.overlay-close{right:3.4%;width:12%;height:8%;z-index:6}.close-new{top:46%}.close-search{top:32.5%}.close-qr{top:35.2%}
+#status{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:#8fa0b8;font-size:14px;line-height:1.45;z-index:2}
+.ready #status{display:none}.failed #status{color:#ff8799}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@supports(height:100dvh){#app{width:min(100vw,calc(100dvh * 320 / 569));max-height:100dvh}}
+</style>
+</head>
+<body>
+<div id="app" role="application" aria-label="AION Service CRM — Canon Fidelity Safari Test">
+  <div id="status">Подготавливаем канонический экран…</div>
+  <img id="screen" class="screen" alt="" draggable="false">
+
+  <button class="hit nav nav-home" data-page="home"><span class="sr">Главная</span></button>
+  <button class="hit nav nav-orders" data-page="orders"><span class="sr">Заказы</span></button>
+  <button class="hit nav nav-repair" data-page="repair"><span class="sr">Ремонт</span></button>
+  <button class="hit nav nav-clients" data-page="clients"><span class="sr">Клиенты</span></button>
+  <button class="hit nav nav-more" data-page="more"><span class="sr">Ещё</span></button>
+
+  <div id="homeHits">
+    <button class="hit home-action a1" data-overlay="new-repair"><span class="sr">Новый ремонт</span></button>
+    <button class="hit home-action a2" data-overlay="search"><span class="sr">Найти заказ</span></button>
+    <button class="hit home-action a3"><span class="sr">Выдать</span></button>
+    <button class="hit home-action row2 a1"><span class="sr">Прайс и поставщики</span></button>
+    <button class="hit home-action row2 a2" data-overlay="qr"><span class="sr">QR</span></button>
+    <button class="hit home-action row2 a3"><span class="sr">Фото</span></button>
+  </div>
+  <div id="ordersHits" hidden><button class="hit orders-search" data-overlay="search"><span class="sr">Поиск заказа</span></button></div>
+  <div id="repairHits" hidden><button class="hit repair-new" data-overlay="new-repair"><span class="sr">Новый ремонт</span></button></div>
+  <div id="clientsHits" hidden>
+    <button class="hit clients-search" data-overlay="search"><span class="sr">Поиск клиента</span></button>
+    <button class="hit clients-qr" data-overlay="qr"><span class="sr">QR</span></button>
+    <button class="hit clients-find" data-overlay="search"><span class="sr">Найти заказ</span></button>
+  </div>
+
+  <div id="overlay" aria-hidden="true">
+    <img id="overlayImage" alt="" draggable="false">
+    <button id="overlayClose" class="hit overlay-close"><span class="sr">Закрыть</span></button>
+  </div>
+</div>
+<script>
+(() => {
+  'use strict';
+  const VERSION = '20260802-3';
+  const names = ['home','orders','repair','clients','more','new-repair','qr','search'];
+  const app = document.getElementById('app');
+  const status = document.getElementById('status');
+  const screen = document.getElementById('screen');
+  const overlay = document.getElementById('overlay');
+  const overlayImage = document.getElementById('overlayImage');
+  const overlayClose = document.getElementById('overlayClose');
+  const hitGroups = {
+    home: document.getElementById('homeHits'),
+    orders: document.getElementById('ordersHits'),
+    repair: document.getElementById('repairHits'),
+    clients: document.getElementById('clientsHits')
+  };
+  let assets = {};
+  let currentPage = 'home';
+
+  async function extractRaster(name) {
+    const response = await fetch(`assets/v8/${name}.svg?v=${VERSION}`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`${name}: HTTP ${response.status}`);
+    const source = await response.text();
+    const match = source.match(/href="(data:image\/webp;base64,[^"]+)"/);
+    if (!match) throw new Error(`${name}: embedded WebP not found`);
+    return match[1];
+  }
+
+  function closeOverlay() {
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    overlayImage.removeAttribute('src');
+  }
+
+  function showPage(page) {
+    if (!assets[page]) return;
+    currentPage = page;
+    screen.src = assets[page];
+    screen.alt = page;
+    Object.entries(hitGroups).forEach(([name, element]) => {
+      element.hidden = name !== page;
+    });
+    closeOverlay();
+  }
+
+  function showOverlay(name) {
+    if (!assets[name]) return;
+    overlayImage.src = assets[name];
+    overlayImage.alt = name;
+    overlayClose.className = `hit overlay-close ${name === 'new-repair' ? 'close-new' : name === 'search' ? 'close-search' : 'close-qr'}`;
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+  }
+
+  document.querySelectorAll('[data-page]').forEach(button => {
+    button.addEventListener('click', () => showPage(button.dataset.page));
+  });
+  document.querySelectorAll('[data-overlay]').forEach(button => {
+    button.addEventListener('click', () => showOverlay(button.dataset.overlay));
+  });
+  overlayClose.addEventListener('click', closeOverlay);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeOverlay();
+  });
+
+  (async () => {
+    try {
+      const values = await Promise.all(names.map(extractRaster));
+      assets = Object.fromEntries(names.map((name, index) => [name, values[index]]));
+      showPage('home');
+      app.classList.add('ready');
+    } catch (error) {
+      console.error(error);
+      app.classList.add('failed');
+      status.textContent = 'v8 не загружен. Основная рабочая версия сохранена.';
+    }
+  })();
+})();
+</script>
+</body>
+</html>
