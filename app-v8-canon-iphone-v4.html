@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#00030a">
+<title>AION Service CRM — Canon 1:1</title>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:#00030a;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{display:flex;justify-content:center}
+#app{width:min(100%,430px);min-height:100dvh;background:#00030a;position:relative}
+.screen{display:none;position:relative;width:100%}.screen.active{display:block}
+.screen img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+.hit{position:absolute;border:0;background:transparent;padding:0;margin:0;z-index:5}
+.home .nav{bottom:2.4%;height:7.2%}.short .nav{bottom:2.2%;height:7.8%}
+.nav{width:19.4%}.n1{left:1.4%}.n2{left:20.8%}.n3{left:40.2%}.n4{left:59.6%}.n5{left:79%}
+.home .a{top:36.6%;height:15.1%;width:31%}.home .r2{top:52.9%;height:14.5%}.c1{left:2.6%}.c2{left:34.5%}.c3{left:66.4%}
+.orders .search{left:4.2%;top:22.2%;width:91.6%;height:5.6%}
+.repair .new{left:3.3%;top:21.8%;width:93.4%;height:17.8%}
+.clients .search{left:4%;top:22.3%;width:92%;height:5.8%}.clients .qr{left:4%;top:29.4%;width:44.5%;height:11.9%}.clients .find{left:51.5%;top:29.4%;width:44.5%;height:11.9%}
+#fail{display:none;color:#ff8da0;text-align:center;padding:40px 20px}body.failed #fail{display:block}body.failed #app{display:none}
+.repair-fix{position:absolute;z-index:4;pointer-events:none;display:grid;place-items:center;color:#dfeaff}
+.repair-fix svg{width:100%;height:100%;filter:drop-shadow(0 0 6px rgba(68,145,255,.55))}
+.home .fix-kpi{left:25.2%;top:25.7%;width:8.2%;height:4.1%}
+.home .fix-nav{left:44.1%;bottom:3.7%;width:11.4%;height:4.8%}
+.short .fix-nav{left:44.1%;bottom:3.6%;width:11.4%;height:5.2%}
+.repair .fix-nav{left:44.1%;bottom:3.6%;width:11.4%;height:5.2%}
+.icon-bg{position:absolute;inset:0;border-radius:14px;background:radial-gradient(circle at 50% 35%,rgba(74,150,255,.22),rgba(5,10,20,.9) 68%);box-shadow:0 0 10px rgba(43,115,255,.32)}
+</style>
+</head>
+<body>
+<div id="fail">Не удалось открыть канонические экраны.</div>
+<main id="app" aria-label="AION Service CRM — Canon 1:1">
+<section class="screen home active" data-screen="home"><img alt="Главная"><button class="hit nav n1" data-go="home"></button><button class="hit nav n2" data-go="orders"></button><button class="hit nav n3" data-go="repair"></button><button class="hit nav n4" data-go="clients"></button><button class="hit nav n5" data-go="more"></button><button class="hit a c1" data-go="repair"></button><button class="hit a c2" data-go="orders"></button><button class="hit a c3" data-go="repair"></button><button class="hit a r2 c1"></button><button class="hit a r2 c2"></button><button class="hit a r2 c3"></button><div class="repair-fix fix-kpi"><svg viewBox="0 0 64 64"><rect x="18" y="7" width="28" height="50" rx="7" fill="#111b2d" stroke="#8fc5ff" stroke-width="4"/><rect x="24" y="15" width="16" height="20" rx="3" fill="#154b8f" stroke="#4da2ff" stroke-width="2"/><path d="M27 25h10M32 20v10" stroke="#dcecff" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="49" r="2.5" fill="#8fc5ff"/></svg></div><div class="repair-fix fix-nav"><span class="icon-bg"></span><svg viewBox="0 0 64 64"><rect x="19" y="7" width="26" height="50" rx="7" fill="#111827" stroke="#d9e8ff" stroke-width="4"/><rect x="24" y="15" width="16" height="20" rx="3" fill="#0c2d5d" stroke="#68aaff" stroke-width="2"/><path d="M27 25h10M32 20v10" stroke="#dcecff" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="49" r="2.4" fill="#d9e8ff"/></svg></div></section>
+<section class="screen short orders" data-screen="orders"><img alt="Заказы"><button class="hit nav n1" data-go="home"></button><button class="hit nav n2" data-go="orders"></button><button class="hit nav n3" data-go="repair"></button><button class="hit nav n4" data-go="clients"></button><button class="hit nav n5" data-go="more"></button><button class="hit search"></button><div class="repair-fix fix-nav"><span class="icon-bg"></span><svg viewBox="0 0 64 64"><rect x="19" y="7" width="26" height="50" rx="7" fill="#111827" stroke="#d9e8ff" stroke-width="4"/><rect x="24" y="15" width="16" height="20" rx="3" fill="#0c2d5d" stroke="#68aaff" stroke-width="2"/><path d="M27 25h10M32 20v10" stroke="#dcecff" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="49" r="2.4" fill="#d9e8ff"/></svg></div></section>
+<section class="screen short repair" data-screen="repair"><img alt="Ремонт"><button class="hit nav n1" data-go="home"></button><button class="hit nav n2" data-go="orders"></button><button class="hit nav n3" data-go="repair"></button><button class="hit nav n4" data-go="clients"></button><button class="hit nav n5" data-go="more"></button><button class="hit new"></button><div class="repair-fix fix-nav"><span class="icon-bg"></span><svg viewBox="0 0 64 64"><rect x="19" y="7" width="26" height="50" rx="7" fill="#0b2a5a" stroke="#f0f6ff" stroke-width="4"/><rect x="24" y="15" width="16" height="20" rx="3" fill="#175bb5" stroke="#8bc5ff" stroke-width="2"/><path d="M27 25h10M32 20v10" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="49" r="2.4" fill="#fff"/></svg></div></section>
+<section class="screen short clients" data-screen="clients"><img alt="Клиенты"><button class="hit nav n1" data-go="home"></button><button class="hit nav n2" data-go="orders"></button><button class="hit nav n3" data-go="repair"></button><button class="hit nav n4" data-go="clients"></button><button class="hit nav n5" data-go="more"></button><button class="hit search"></button><button class="hit qr"></button><button class="hit find" data-go="orders"></button><div class="repair-fix fix-nav"><span class="icon-bg"></span><svg viewBox="0 0 64 64"><rect x="19" y="7" width="26" height="50" rx="7" fill="#111827" stroke="#d9e8ff" stroke-width="4"/><rect x="24" y="15" width="16" height="20" rx="3" fill="#0c2d5d" stroke="#68aaff" stroke-width="2"/><path d="M27 25h10M32 20v10" stroke="#dcecff" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="49" r="2.4" fill="#d9e8ff"/></svg></div></section>
+<section class="screen short more" data-screen="more"><img alt="Ещё"><button class="hit nav n1" data-go="home"></button><button class="hit nav n2" data-go="orders"></button><button class="hit nav n3" data-go="repair"></button><button class="hit nav n4" data-go="clients"></button><button class="hit nav n5" data-go="more"></button><div class="repair-fix fix-nav"><span class="icon-bg"></span><svg viewBox="0 0 64 64"><rect x="19" y="7" width="26" height="50" rx="7" fill="#111827" stroke="#d9e8ff" stroke-width="4"/><rect x="24" y="15" width="16" height="20" rx="3" fill="#0c2d5d" stroke="#68aaff" stroke-width="2"/><path d="M27 25h10M32 20v10" stroke="#dcecff" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="49" r="2.4" fill="#d9e8ff"/></svg></div></section>
+</main>
+<script src="assets/v8-direct/home.js"></script><script src="assets/v8-direct/orders.js"></script><script src="assets/v8-direct/repair.js"></script><script src="assets/v8-direct/clients.js"></script><script src="assets/v8-direct/more.js"></script>
+<script>
+(()=>{const names=['home','orders','repair','clients','more'];try{for(const n of names){const el=document.querySelector(`[data-screen="${n}"] img`);el.src=window.AION_CANON[n]}document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;const name=b.dataset.go;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.dataset.screen===name));history.replaceState(null,'',`#${name}`);scrollTo(0,0)});const start=location.hash.slice(1);if(names.includes(start))document.querySelector(`[data-go="${start}"]`)?.click()}catch(e){console.error(e);document.body.classList.add('failed')}})();
+</script>
+</body>
+</html>
