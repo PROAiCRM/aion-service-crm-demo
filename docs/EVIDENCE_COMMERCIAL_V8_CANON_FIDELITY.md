@@ -21,14 +21,29 @@ The following owner-approved screens are the immutable visual source for this fi
 - `assets/v8/qr.svg` — QR modal;
 - `assets/v8/search.svg` — Search modal.
 
-These assets preserve the approved dark premium AION identity, metallic logo, blue neon depth, 3D module icons, working queue, card proportions and five-item Dock. They are not to be creatively redrawn during the fidelity stage.
+These assets preserve the approved dark premium AION identity, metallic logo, blue neon depth, 3D module icons, working queue, card proportions and five-item Dock. They must not be creatively redrawn during the fidelity stage.
+
+## Canon freeze rule
+
+No developer or AI may change the following without a new explicit owner decision:
+
+- logo form and metallic treatment;
+- overall dark palette and blue neon hierarchy;
+- card geometry, proportions, spacing and visual depth;
+- module composition and 3D icon style;
+- five-item Dock composition;
+- visible texts and hierarchy inside the approved reference screens;
+- the position, scale or appearance of the approved screens and modals.
+
+Functional implementation must be built beneath the approved visual layer, not by replacing or loosely reinterpreting it.
 
 ## Implemented
 
-- published a new direct static entry: `app-v8-canon.html`;
+- canonical entry: `app-v8-canon.html`;
+- root `index.html` redirects to the canonical entry;
 - removed dependency on the v7.x implementation and patch chain;
-- no runtime `fetch()`, `DOMParser`, `document.write()` or intermediate loading boundary;
-- displays the approved reference screen as the visual layer rather than attempting a similar CSS reconstruction;
+- approved screens are displayed as the visual truth instead of being approximately reconstructed with HTML/CSS;
+- Safari-compatible runtime extracts the embedded WebP raster before display, avoiding direct nested SVG image rendering;
 - transparent interaction hotspots switch between Home, Orders, Repair, Clients and More;
 - Home opens the approved New repair, Search and QR screens;
 - Orders search opens the approved Search screen;
@@ -36,19 +51,19 @@ These assets preserve the approved dark premium AION identity, metallic logo, bl
 - Clients QR and Find order open the approved QR/Search screens;
 - close hotspots return from each approved modal;
 - viewport is constrained to the original 320:569 composition without horizontal scrolling;
-- root `index.html` redirects to the v8 Canon Fidelity entry;
-- all v7.x files remain available as rollback/history and are not represented as the current canon.
+- v7.x remains available only as rollback/history.
 
-## Source validation completed
+## Physical evidence received
 
-- standalone HTML source created and committed;
-- JavaScript syntax passed `node --check` before publication;
-- duplicate HTML IDs: 0;
-- external network dependencies: 0;
-- runtime page fetch/HTML replacement: 0;
-- five page targets and three modal targets are present;
-- eight referenced canon assets exist in the repository;
-- no API credentials, customer records, database, authentication, supplier account or private CRM code were added.
+The owner supplied screenshots from a real iPhone showing successful rendering of:
+
+- Home;
+- Orders;
+- Clients;
+- New repair modal;
+- Preferences/settings modal.
+
+The previous blue corrupted screen is no longer present in the verified Safari runtime.
 
 ## Maturity boundary
 
@@ -56,7 +71,8 @@ These assets preserve the approved dark premium AION identity, metallic logo, bl
 - fidelity interaction design: **DESIGNED**;
 - image-backed interactive web prototype: **IMPLEMENTED**;
 - source/static validation: **PASSED**;
-- physical v8 verification on the owner’s iPhone: **NOT YET CONFIRMED**;
+- physical rendering on owner’s iPhone: **PASSED FOR THE SUBMITTED SCREENS**;
+- complete physical click-through of every hotspot and modal: **PARTIALLY VERIFIED**;
 - pixel-perfect implementation with real semantic components: **NOT IMPLEMENTED**;
 - real order search, QR decoding, camera recognition, supplier search, database, documents, roles and server controls: **NOT IMPLEMENTED**;
 - production readiness, accessibility, shift usability and commercial result: **NOT PROVEN**.
@@ -65,13 +81,14 @@ These assets preserve the approved dark premium AION identity, metallic logo, bl
 
 The image-backed layer is deliberately a fidelity and interaction reference, not the production UI architecture. It protects the frozen visual truth while semantic components, business rules and integrations are later implemented beneath the same approved presentation. It must not become the long-term implementation shortcut for the production CRM.
 
-## Mandatory next check
+## Current mandatory next step
 
-Open `app-v8-canon.html?v=20260802-1` on the owner’s iPhone and verify:
+Implement the first real semantic workflow beneath the frozen visual canon without changing its appearance:
 
-1. Home appears fully without crop or blank area;
-2. all five Dock tabs open the exact approved screens;
-3. Home New repair, Search and QR open the approved modal screens;
-4. Orders search, Repair New repair and Clients QR/Search open correctly;
-5. each modal closes through its visible X control;
-6. no v7 visual elements, loader screens or Safari default button styling are present.
+1. New repair guided intake;
+2. client lookup/create;
+3. device and problem capture;
+4. explicit human confirmation;
+5. immutable action receipt for the created demo order.
+
+Until that workflow exists, v8 remains a physically verified interactive visual prototype, not a working CRM module.
