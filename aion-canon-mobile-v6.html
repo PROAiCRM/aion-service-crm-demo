@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#00030a">
+<title>AION Service CRM — Canon 1:1 V6</title>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:#00030a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{display:flex;justify-content:center}
+#app{width:min(100%,430px);min-height:100dvh;background:#00030a;position:relative}
+.screen{display:none;position:relative;width:100%}.screen.active{display:block}
+.screen img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+.hit{position:absolute;border:0;background:transparent;padding:0;margin:0;z-index:5;cursor:pointer}
+.home .nav{bottom:2.4%;height:7.2%}.short .nav{bottom:2.2%;height:7.8%}
+.nav{width:19.4%}.n1{left:1.4%}.n2{left:20.8%}.n3{left:40.2%}.n4{left:59.6%}.n5{left:79%}
+.home .action{top:36.6%;height:15.1%;width:31%}.home .row2{top:52.9%;height:14.5%}.c1{left:2.6%}.c2{left:34.5%}.c3{left:66.4%}
+#fail{display:none;color:#ff8da0;text-align:center;padding:40px 20px}body.failed #fail{display:block}body.failed #app{display:none}
+</style>
+</head>
+<body>
+<div id="fail">Не удалось открыть канонические экраны.</div>
+<main id="app" aria-label="AION Service CRM — Canon 1:1">
+<section class="screen home active" data-screen="home"><img alt="Главная"><button class="hit nav n1" data-go="home" aria-label="Главная"></button><button class="hit nav n2" data-go="orders" aria-label="Заказы"></button><button class="hit nav n3" data-go="repair" aria-label="Ремонт"></button><button class="hit nav n4" data-go="clients" aria-label="Клиенты"></button><button class="hit nav n5" data-go="more" aria-label="Ещё"></button><button class="hit action c1" data-go="repair" aria-label="Новый ремонт"></button><button class="hit action c2" data-go="orders" aria-label="Найти заказ"></button><button class="hit action c3" data-go="repair" aria-label="Выдать"></button><button class="hit action row2 c1" aria-label="Прайс и поставщики"></button><button class="hit action row2 c2" aria-label="QR"></button><button class="hit action row2 c3" aria-label="Фото"></button></section>
+<section class="screen short orders" data-screen="orders"><img alt="Заказы"><button class="hit nav n1" data-go="home" aria-label="Главная"></button><button class="hit nav n2" data-go="orders" aria-label="Заказы"></button><button class="hit nav n3" data-go="repair" aria-label="Ремонт"></button><button class="hit nav n4" data-go="clients" aria-label="Клиенты"></button><button class="hit nav n5" data-go="more" aria-label="Ещё"></button></section>
+<section class="screen short repair" data-screen="repair"><img alt="Ремонт"><button class="hit nav n1" data-go="home" aria-label="Главная"></button><button class="hit nav n2" data-go="orders" aria-label="Заказы"></button><button class="hit nav n3" data-go="repair" aria-label="Ремонт"></button><button class="hit nav n4" data-go="clients" aria-label="Клиенты"></button><button class="hit nav n5" data-go="more" aria-label="Ещё"></button></section>
+<section class="screen short clients" data-screen="clients"><img alt="Клиенты"><button class="hit nav n1" data-go="home" aria-label="Главная"></button><button class="hit nav n2" data-go="orders" aria-label="Заказы"></button><button class="hit nav n3" data-go="repair" aria-label="Ремонт"></button><button class="hit nav n4" data-go="clients" aria-label="Клиенты"></button><button class="hit nav n5" data-go="more" aria-label="Ещё"></button></section>
+<section class="screen short more" data-screen="more"><img alt="Ещё"><button class="hit nav n1" data-go="home" aria-label="Главная"></button><button class="hit nav n2" data-go="orders" aria-label="Заказы"></button><button class="hit nav n3" data-go="repair" aria-label="Ремонт"></button><button class="hit nav n4" data-go="clients" aria-label="Клиенты"></button><button class="hit nav n5" data-go="more" aria-label="Ещё"></button></section>
+</main>
+<script src="assets/v8-direct/home.js?v=20260802-6"></script>
+<script src="assets/v8-direct/orders.js?v=20260802-6"></script>
+<script src="assets/v8-direct/repair.js?v=20260802-6"></script>
+<script src="assets/v8-direct/clients.js?v=20260802-6"></script>
+<script src="assets/v8-direct/more.js?v=20260802-6"></script>
+<script>
+(()=>{
+const names=['home','orders','repair','clients','more'];
+function show(name){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.dataset.screen===name));history.replaceState(null,'','#'+name);scrollTo(0,0)}
+try{
+ if(!window.AION_CANON)throw new Error('AION_CANON missing');
+ for(const name of names){if(!window.AION_CANON[name])throw new Error(name+' missing');document.querySelector(`[data-screen="${name}"] img`).src=window.AION_CANON[name]}
+ document.addEventListener('click',e=>{const button=e.target.closest('[data-go]');if(button)show(button.dataset.go)});
+ let x=0,y=0;document.addEventListener('touchstart',e=>{x=e.changedTouches[0].clientX;y=e.changedTouches[0].clientY},{passive:true});document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x,dy=e.changedTouches[0].clientY-y;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.4){const current=document.querySelector('.screen.active').dataset.screen;let i=names.indexOf(current);i=dx<0?Math.min(names.length-1,i+1):Math.max(0,i-1);show(names[i])}},{passive:true});
+ const initial=location.hash.slice(1);if(names.includes(initial))show(initial);
+}catch(error){console.error(error);document.body.classList.add('failed')}
+})();
+</script>
+</body>
+</html>
