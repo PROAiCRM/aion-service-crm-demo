@@ -3,113 +3,52 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#01040b">
-<title>AION Service CRM — iPhone Canon v2</title>
+<meta name="theme-color" content="#02050c">
+<title>AION Service CRM — Mobile Canon</title>
 <style>
-:root{color-scheme:dark}
+:root{color-scheme:dark;--bg:#02050c;--panel:#07101e;--panel2:#0a1425;--line:#1a3f73;--line2:#285fa9;--text:#f4f7ff;--muted:#8f9bb2;--blue:#2d8cff;--cyan:#4dc9ff;--green:#54df79;--violet:#a45cff;--danger:#ff7b91}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;width:100%;height:100%;background:#01040b;overflow:hidden}
-body{display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-#app{position:relative;width:min(100vw,calc(100svh * 320 / 569));aspect-ratio:320/569;max-height:100svh;background:#01040b;overflow:hidden;isolation:isolate}
-#screen{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none}
-.hit{position:absolute;border:0;background:transparent;padding:0;margin:0;cursor:pointer;z-index:3}
-.hit:focus-visible{outline:2px solid #55a8ff;outline-offset:-4px;border-radius:12px}
-.nav{bottom:1%;height:8.8%;width:19.5%}.nav-home{left:1%}.nav-orders{left:20.4%}.nav-repair{left:40.1%}.nav-clients{left:59.8%}.nav-more{left:79.4%}
-.home-action{top:36.2%;height:16.8%;width:31.5%}.home-action.row2{top:53.1%;height:15.3%}.a1{left:2.8%}.a2{left:34.4%}.a3{left:66%}
-.orders-search{left:3.7%;top:18.3%;width:92.5%;height:7.2%}.repair-new{left:3.3%;top:21.3%;width:93.4%;height:18.1%}
-.clients-search{left:3.4%;top:19.4%;width:93.1%;height:6.5%}.clients-qr{left:3.5%;top:27.7%;width:46%;height:12.4%}.clients-find{left:50.5%;top:27.7%;width:46%;height:12.4%}
-#status{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:#8fa0b8;font-size:14px;line-height:1.45;z-index:2}
-.ready #status{display:none}.failed #status{color:#ff8799}
-.retry{margin-top:14px;border:1px solid #2e79ce;border-radius:12px;background:#071a31;color:#dcecff;padding:11px 16px;font-weight:600}
-.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-@supports(height:100dvh){#app{width:min(100vw,calc(100dvh * 320 / 569));max-height:100dvh}}
+html,body{margin:0;min-height:100%;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text)}
+body{display:flex;justify-content:center}
+button,input{font:inherit}
+button{color:inherit}
+.app{width:min(100%,430px);min-height:100dvh;padding:14px 10px calc(92px + env(safe-area-inset-bottom));background:radial-gradient(circle at 18% 5%,rgba(37,104,255,.12),transparent 24%),linear-gradient(180deg,#02050d,#030711 56%,#02050c)}
+.header{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:9px;min-width:0}.brandmark{width:43px;height:43px;filter:drop-shadow(0 0 8px rgba(75,151,255,.45))}.brandtext strong{display:block;font-size:26px;letter-spacing:3px;line-height:.9;background:linear-gradient(180deg,#fff,#8aa9dc);-webkit-background-clip:text;color:transparent}.brandtext span{font-size:9px;letter-spacing:3px;color:#a9b4c8}
+.head-actions{display:flex;gap:7px}.headbtn{height:40px;min-width:46px;border:1px solid #203c67;border-radius:10px;background:linear-gradient(180deg,#0b1423,#060b15);box-shadow:inset 0 1px 0 rgba(255,255,255,.05);color:#d6e2f8}.lang{padding:0 12px;font-size:12px;color:#79b8ff}.headbtn svg{width:21px;height:21px}
+.page{display:none}.page.active{display:block}.title{font-size:30px;margin:6px 4px 0}.subtitle{margin:2px 4px 14px;color:var(--muted);font-size:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.overview-card{min-height:118px;padding:14px;border:1px solid #1e477c;border-radius:14px;background:linear-gradient(145deg,rgba(15,29,52,.96),rgba(4,10,20,.98));box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 10px 28px rgba(0,0,0,.25);position:relative;overflow:hidden}.overview-card h3{font-size:15px;margin:0 0 7px}.overview-card p{margin:0;color:#b8c2d5;font-size:12px;line-height:1.45}.bars{position:absolute;right:12px;bottom:14px;height:58px;width:76px;display:flex;align-items:end;gap:5px}.bars i{display:block;width:9px;border-radius:3px 3px 0 0;background:linear-gradient(90deg,#0b50d5,#59c6ff);box-shadow:0 0 8px rgba(41,131,255,.55)}.eve-orb{position:absolute;left:12px;bottom:15px;width:55px;height:55px;border-radius:50%;background:radial-gradient(circle at 50% 48%,#0a1f33 32%,#9bb1cf 34%,#263d5f 42%,#03070d 52%,#8ecbff 59%,#0a1527 63%);box-shadow:0 0 18px rgba(50,137,255,.38)}.eve-orb:before,.eve-orb:after{content:"";position:absolute;top:24px;width:7px;height:7px;border-radius:50%;background:#3ee9ff;box-shadow:0 0 8px #30caff}.eve-orb:before{left:17px}.eve-orb:after{right:17px}.eve-copy{padding-left:66px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:9px 0}.stat{min-height:92px;padding:9px 8px;border:1px solid #173a68;border-radius:12px;background:linear-gradient(160deg,#0b1628,#050a13);overflow:hidden}.stat .mini{display:flex;align-items:center;gap:5px;font-size:10px;color:#b8c6dc;white-space:nowrap}.stat .mini svg{width:22px;height:22px}.stat strong{display:block;font-size:25px;margin-top:13px}.stat.green strong{color:var(--green)}.stat.money strong{font-size:14px;margin-top:19px}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.action{min-height:133px;border:1px solid #173c70;border-radius:14px;background:linear-gradient(155deg,#0a1527,#040912);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);position:relative}.action.primary{border-color:#2d8cff;box-shadow:0 0 0 1px rgba(45,140,255,.55),0 0 22px rgba(0,102,255,.42),inset 0 0 22px rgba(32,111,255,.12)}.action .label{font-size:14px;text-align:center;line-height:1.15}.action-icon{width:65px;height:65px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#102a56,#071329);border:1px solid #4a8fff;box-shadow:inset 0 1px 7px rgba(255,255,255,.18),0 0 15px rgba(34,121,255,.38)}.action-icon svg{width:48px;height:48px}.action:not(.primary) .action-icon{background:transparent;border:0;box-shadow:none;width:68px;height:68px}.action:not(.primary) .action-icon svg{width:58px;height:58px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:13px 2px 8px}.section-head h2{font-size:18px;margin:0}.section-head button{border:0;background:none;color:#56a8ff;font-size:12px}.queue{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.order-mini{border:1px solid #17395f;border-radius:11px;background:#07101c;padding:7px 6px;min-height:134px}.device{height:62px;border-radius:8px;background:linear-gradient(145deg,#7f8996,#252b34 38%,#080a0e 65%,#303842);display:grid;place-items:center;color:#111;font-size:27px;text-shadow:0 1px 1px #fff}.order-mini b{font-size:10px}.order-mini small{display:block;color:#b2bdd0;font-size:9px;margin-top:2px}.time{font-size:9px;color:#aab5c8;margin-top:6px}.status{font-size:9px;text-align:center;margin-top:7px;padding:4px;border:1px solid #1e66be;border-radius:5px;color:#5da8ff;background:#071b35}.status.violet{border-color:#6b2db1;color:#cf6eff}.status.green{border-color:#257c42;color:#65e88a}
+.search{width:100%;height:48px;border:1px solid #24548d;border-radius:11px;background:#07101e;color:#dce8fa;padding:0 14px;margin-bottom:10px;outline:none}.filters{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}.filter{height:42px;border:1px solid #1d477d;border-radius:10px;background:#07111f}.filter.active{border-color:#2d8cff;box-shadow:0 0 12px rgba(45,140,255,.38)}.filter em{font-style:normal;color:#45a0ff;font-size:20px;margin-left:5px}
+.list{display:grid;gap:8px}.row{display:grid;grid-template-columns:58px 1fr auto;gap:10px;align-items:center;padding:9px;border:1px solid #183e71;border-radius:12px;background:linear-gradient(150deg,#0a1525,#050a13)}.thumb{width:58px;height:78px;border-radius:8px;background:linear-gradient(145deg,#9aa3ae,#293039 38%,#0a0d11 70%,#3c4653);display:grid;place-items:center;color:#12151a;font-size:30px}.row h3{font-size:15px;margin:0}.row p{font-size:11px;color:#aeb9cb;margin:2px 0}.tag{font-size:10px;color:#5faeff}.price{text-align:right;font-size:18px;white-space:nowrap}.row time{display:block;color:#98a6bb;font-size:11px;margin-top:18px}
+.hero-card,.active-repair{border:1px solid #1b477d;border-radius:14px;background:linear-gradient(145deg,#0c1930,#050a14);padding:16px;margin-bottom:14px}.hero-card{min-height:138px;display:flex;align-items:center;gap:16px;width:100%}.hero-card h2{margin:0;font-size:22px}.hero-card p{color:#a8b4c7;margin:5px 0}.phone-icon{width:74px;height:98px;border:2px solid #47a4ff;border-radius:14px;background:linear-gradient(160deg,#12366c,#07152b);box-shadow:0 0 20px rgba(35,128,255,.43),inset 0 0 18px rgba(46,142,255,.18);display:grid;place-items:center}.phone-icon svg{width:50px;height:50px}.arrow{margin-left:auto;font-size:42px;color:#c9d7ec}.active-repair h2{margin:0 0 14px;font-size:20px;display:flex;justify-content:space-between}.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin:12px 0 18px}.step{position:relative;text-align:center}.step:before{content:"";position:absolute;top:15px;left:-50%;width:100%;height:2px;background:#344156}.step:first-child:before{display:none}.step span{position:relative;z-index:1;width:31px;height:31px;border-radius:50%;display:grid;place-items:center;margin:auto;background:#111b2d;border:1px solid #4b5a71;color:#a7b0c0}.step.done span{border-color:#2c91ff;color:#fff;box-shadow:0 0 12px #1575e8}.step.done:before{background:#2f91ff}.step small{display:block;color:#aeb8c9;font-size:9px;margin-top:7px}.repair-summary{display:flex;justify-content:space-between;border:1px solid #163761;border-radius:10px;padding:13px;background:#07111e}.repair-summary strong{display:block}.repair-summary b{color:#54a6ff}.cta{width:100%;height:52px;margin-top:15px;border:1px solid #5ab0ff;border-radius:9px;background:linear-gradient(180deg,#2588ff,#0d46c3);box-shadow:0 0 16px rgba(34,119,255,.48);font-size:17px}
+.quick2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px}.quick{height:100px;border:1px solid #1b497e;border-radius:13px;background:#081323;display:flex;align-items:center;gap:12px;padding:12px}.quick svg{width:52px;height:52px}.quick b{font-size:14px}.quick small{display:block;color:#9fabbd;margin-top:3px}
+.modules{display:grid;grid-template-columns:1fr 1fr;gap:10px}.module{min-height:140px;border:1px solid #1b497e;border-radius:14px;background:linear-gradient(145deg,#0b1729,#050a13);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}.module svg{width:66px;height:66px}.module b{font-size:15px}.module small{color:#9aa7bb}
+.tabbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(8px + env(safe-area-inset-bottom));width:min(calc(100% - 20px),410px);height:70px;padding:6px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;border:1px solid #193b68;border-radius:16px;background:rgba(4,9,17,.96);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);z-index:20;box-shadow:0 -10px 30px rgba(0,0,0,.32)}.tab{border:1px solid transparent;border-radius:11px;background:linear-gradient(180deg,#0c1524,#060b13);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#a9b4c7;font-size:10px}.tab svg{width:28px;height:28px}.tab.active{border-color:#2f8cff;color:#fff;box-shadow:0 0 14px rgba(35,124,255,.52),inset 0 0 14px rgba(35,124,255,.12)}.tab.active svg{filter:drop-shadow(0 0 5px #2588ff)}
+.toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#0b1b31;border:1px solid #2b73bf;border-radius:10px;padding:10px 14px;color:#dcecff;transition:.2s;z-index:30}.toast.show{opacity:1;transform:translate(-50%,0)}
+svg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.metal{color:#b9c8de}.blue{color:#55a9ff}.green-c{color:#64e18a}.violet-c{color:#bd7cff}
+@media(max-width:370px){.brandtext strong{font-size:22px}.headbtn{min-width:40px}.actions{gap:6px}.action{min-height:120px}.action-icon{width:56px;height:56px}.queue{gap:5px}.order-mini{padding:5px 4px}.tabbar{gap:3px}}
 </style>
 </head>
 <body>
-<div id="app" role="application" aria-label="AION Service CRM — Canon Fidelity Prototype">
-  <div id="status">Загружаем канонический экран…</div>
-  <img id="screen" alt="" draggable="false" decoding="async">
-
-  <button class="hit nav nav-home" data-page="home"><span class="sr">Главная</span></button>
-  <button class="hit nav nav-orders" data-page="orders"><span class="sr">Заказы</span></button>
-  <button class="hit nav nav-repair" data-page="repair"><span class="sr">Ремонт</span></button>
-  <button class="hit nav nav-clients" data-page="clients"><span class="sr">Клиенты</span></button>
-  <button class="hit nav nav-more" data-page="more"><span class="sr">Ещё</span></button>
-
-  <div id="homeHits">
-    <button class="hit home-action a1" data-page="repair"><span class="sr">Новый ремонт</span></button>
-    <button class="hit home-action a2" data-page="orders"><span class="sr">Найти заказ</span></button>
-    <button class="hit home-action a3" data-page="repair"><span class="sr">Выдать</span></button>
-    <button class="hit home-action row2 a1"><span class="sr">Прайс и поставщики</span></button>
-    <button class="hit home-action row2 a2"><span class="sr">QR</span></button>
-    <button class="hit home-action row2 a3"><span class="sr">Фото</span></button>
-  </div>
-  <div id="ordersHits" hidden><button class="hit orders-search"><span class="sr">Поиск заказа</span></button></div>
-  <div id="repairHits" hidden><button class="hit repair-new"><span class="sr">Новый ремонт</span></button></div>
-  <div id="clientsHits" hidden>
-    <button class="hit clients-search"><span class="sr">Поиск клиента</span></button>
-    <button class="hit clients-qr"><span class="sr">QR</span></button>
-    <button class="hit clients-find" data-page="orders"><span class="sr">Найти заказ</span></button>
-  </div>
-</div>
-<script>
-(() => {
-  'use strict';
-  const VERSION='20260802-iphone-v2';
-  const pages=['home','orders','repair','clients','more'];
-  const app=document.getElementById('app');
-  const status=document.getElementById('status');
-  const screen=document.getElementById('screen');
-  const groups={home:document.getElementById('homeHits'),orders:document.getElementById('ordersHits'),repair:document.getElementById('repairHits'),clients:document.getElementById('clientsHits')};
-  const cache=new Map();
-  let current='home';
-
-  function fail(name,error){
-    console.error('AION screen load failed',name,error);
-    app.classList.remove('ready');app.classList.add('failed');
-    status.innerHTML=`Не удалось открыть экран «${name}».<br><button class="retry" type="button">Повторить</button>`;
-    status.querySelector('.retry')?.addEventListener('click',()=>show(name,true));
-  }
-
-  async function extractDataUri(name,force=false){
-    if(!force&&cache.has(name))return cache.get(name);
-    const url=new URL(`assets/v8/${name}.svg?v=${VERSION}${force?`&retry=${Date.now()}`:''}`,location.href);
-    const response=await fetch(url.toString(),{cache:'no-store',credentials:'same-origin'});
-    if(!response.ok)throw new Error(`HTTP ${response.status}: ${url}`);
-    const text=await response.text();
-    const match=text.match(/(?:href|xlink:href)=["'](data:image\/(?:webp|png|jpeg|jpg);base64,[^"']+)["']/i);
-    if(!match)throw new Error('Embedded image not found');
-    const uri=match[1].replace(/\s/g,'');
-    cache.set(name,uri);
-    return uri;
-  }
-
-  async function show(name,force=false){
-    if(!pages.includes(name))name='home';
-    current=name;
-    app.classList.remove('ready','failed');
-    status.textContent='Загружаем канонический экран…';
-    Object.entries(groups).forEach(([key,element])=>{element.hidden=key!==name});
-    try{
-      const uri=await extractDataUri(name,force);
-      await new Promise((resolve,reject)=>{
-        screen.onload=resolve;
-        screen.onerror=()=>reject(new Error('Safari image decode failed'));
-        screen.src=uri;
-      });
-      screen.alt=name;
-      app.classList.add('ready');
-      history.replaceState(null,'',`#${name}`);
-    }catch(error){fail(name,error)}
-  }
-
-  document.querySelectorAll('[data-page]').forEach(button=>button.addEventListener('click',()=>show(button.dataset.page)));
-  let x0=0,y0=0;
-  app.addEventListener('touchstart',event=>{const t=event.changedTouches[0];x0=t.clientX;y0=t.clientY},{passive:true});
-  app.addEventListener('touchend',event=>{const t=event.changedTouches[0],dx=t.clientX-x0,dy=t.clientY-y0;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.4){let i=pages.indexOf(current);i=dx<0?Math.min(pages.length-1,i+1):Math.max(0,i-1);show(pages[i])}},{passive:true});
-  const initial=location.hash.slice(1);show(pages.includes(initial)?initial:'home');
-  setTimeout(()=>pages.filter(name=>name!==current).forEach(name=>extractDataUri(name).catch(()=>{})),700);
-})();
-</script>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10.5V21h14V10.5M9 21v-6h6v6"/></symbol>
+<symbol id="i-orders" viewBox="0 0 24 24"><path d="M8 4h8M9 2h6v4H9z"/><path d="M6 4H4v18h16V4h-2M8 10h8M8 14h8M8 18h5"/></symbol>
+<symbol id="i-repair" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 5h4M11 19h2"/><rect x="9" y="8" width="6" height="6" rx="1"/><path d="M7 9h2M7 12h2M15 9h2M15 12h2M10 6v2M13 6v2M10 14v2M13 14v2"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-4 2.5-6 6-6s6 2 6 6M14 15c4-.7 7 1.2 7 5"/></symbol>
+<symbol id="i-more" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><path d="m15.5 15.5 5 5"/></symbol><symbol id="i-phoneplus" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M9 5h6M10 18h4M12 8v7M8.5 11.5h7"/></symbol><symbol id="i-hand" viewBox="0 0 24 24"><path d="M4 16c3-1 4-2 6-4l2-2 2 1 2-1 4 2-4 7H8z"/><rect x="9" y="3" width="8" height="12" rx="2"/></symbol><symbol id="i-box" viewBox="0 0 24 24"><path d="m3 7 9-4 9 4-9 4zM3 7v10l9 4 9-4V7M12 11v10"/></symbol><symbol id="i-qr" viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h3v3h-3zM18 14h3v7M14 18h4M14 21h3"/></symbol><symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v12H3z"/><circle cx="12" cy="14" r="4"/></symbol><symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5z"/></symbol><symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9 7 7M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></symbol><symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z"/></symbol><symbol id="i-lang" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4 6 4 9s-1 6-4 9c-3-3-4-6-4-9s1-6 4-9"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 17h12l-2-3V9a4 4 0 0 0-8 0v5zM10 20h4"/></symbol><symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10h4v10M10 20V4h4v16M16 20v-7h4v7"/></symbol>
+</defs></svg>
+<main class="app" id="app">
+<header class="header"><div class="brand"><svg class="brandmark" viewBox="0 0 48 48"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9f0ff"/><stop offset=".45" stop-color="#3b8cff"/><stop offset="1" stop-color="#071838"/></linearGradient></defs><path d="M24 3 5 42l19-12 19 12z" fill="url(#g)" stroke="#79b7ff"/><path d="m24 3-5 27 5-5 5 5z" fill="#071632" stroke="#b6d5ff"/></svg><div class="brandtext"><strong>AION</strong><span>SERVICE CRM</span></div></div><div class="head-actions"><button class="headbtn lang">RU / EN</button><button class="headbtn" data-toast="Тема переключится в рабочей версии"><svg><use href="#i-moon"/></svg></button><button class="headbtn" data-page="more"><svg><use href="#i-gear"/></svg></button></div></header>
+<section class="page active" data-screen="home"><div class="grid2"><article class="overview-card"><h3>Рабочая зона</h3><p>7 в работе · 2 к выдаче · <span style="color:#ff665c">1 просрочен</span></p><div class="bars"><i style="height:18px"></i><i style="height:27px"></i><i style="height:40px"></i><i style="height:58px"></i></div></article><article class="overview-card"><h3>EvE</h3><div class="eve-orb"></div><p class="eve-copy">Следующий шаг:<br><b>Свяжитесь с клиентом по заказу №12543</b></p></article></div><div class="stats"><article class="stat"><div class="mini"><svg class="blue"><use href="#i-orders"/></svg>Новые</div><strong>12</strong></article><article class="stat"><div class="mini"><svg class="blue"><use href="#i-repair"/></svg>В работе</div><strong>7</strong></article><article class="stat green"><div class="mini"><svg class="green-c"><use href="#i-box"/></svg>К выдаче</div><strong>2</strong></article><article class="stat money"><div class="mini"><svg class="violet-c"><use href="#i-chart"/></svg>Выручка</div><strong>1 245 000 ₽</strong></article></div><div class="actions"><button class="action primary" data-page="repair"><span class="action-icon"><svg class="blue"><use href="#i-phoneplus"/></svg></span><span class="label">Новый ремонт</span></button><button class="action" data-page="orders"><span class="action-icon"><svg class="metal"><use href="#i-search"/></svg></span><span class="label">Найти заказ</span></button><button class="action" data-toast="Открываем выдачу заказа"><span class="action-icon"><svg class="metal"><use href="#i-hand"/></svg></span><span class="label">Выдать</span></button><button class="action" data-toast="Модуль поставщиков пока проектируется"><span class="action-icon"><svg class="blue"><use href="#i-box"/></svg></span><span class="label">Прайс и<br>поставщики</span></button><button class="action" data-toast="QR-сканер откроется в рабочей версии"><span class="action-icon"><svg class="metal"><use href="#i-qr"/></svg></span><span class="label">QR</span></button><button class="action" data-toast="Камера откроется в мобильной версии"><span class="action-icon"><svg class="blue"><use href="#i-camera"/></svg></span><span class="label">Фото</span></button></div><div class="section-head"><h2>Рабочая очередь</h2><button data-page="orders">Смотреть все ›</button></div><div class="queue"><article class="order-mini"><div class="device">▣</div><b>№12541</b><small>Иванов С.</small><div class="time">◷ 09:15</div><div class="status">В РАБОТЕ</div></article><article class="order-mini"><div class="device">▣</div><b>№12542</b><small>Петров А.</small><div class="time">◷ 10:20</div><div class="status violet">ДИАГНОСТИКА</div></article><article class="order-mini"><div class="device">▣</div><b>№12543</b><small>Сидоров М.</small><div class="time">◷ 11:05</div><div class="status green">К ВЫДАЧЕ</div></article><article class="order-mini"><div class="device">▣</div><b>№12544</b><small>Васильев Д.</small><div class="time">◷ 12:30</div><div class="status">В РАБОТЕ</div></article></div></section>
+<section class="page" data-screen="orders"><h1 class="title">Заказы</h1><p class="subtitle">Очередь, поиск и статусы</p><input class="search" placeholder="Поиск заказа, клиента или устройства"><div class="filters"><button class="filter active">Все <em>12</em></button><button class="filter">В работе <em>7</em></button><button class="filter">К выдаче <em>2</em></button></div><div class="list"><article class="row"><div class="thumb">▣</div><div><h3>№12541</h3><p>iPhone 15 Pro<br>Иванов С.</p><span class="tag">В работе</span></div><div class="price">24 500 ₽<time>◷ 09:15</time></div></article><article class="row"><div class="thumb">▣</div><div><h3>№12542</h3><p>iPhone 14<br>Петров А.</p><span class="tag" style="color:#cf6eff">Диагностика</span></div><div class="price">3 500 ₽<time>◷ 10:20</time></div></article><article class="row"><div class="thumb">▣</div><div><h3>№12543</h3><p>Galaxy S23<br>Сидоров М.</p><span class="tag" style="color:#65e88a">К выдаче</span></div><div class="price">6 490 ₽<time>◷ 11:05</time></div></article><article class="row"><div class="thumb">▣</div><div><h3>№12544</h3><p>POCO X5<br>Васильев Д.</p><span class="tag">В работе</span></div><div class="price">8 900 ₽<time>◷ 12:30</time></div></article></div></section>
+<section class="page" data-screen="repair"><h1 class="title">Ремонт</h1><p class="subtitle">Приёмка и контроль этапов</p><button class="hero-card" data-toast="Пошаговая приёмка откроется следующим экраном"><span class="phone-icon"><svg class="blue"><use href="#i-phoneplus"/></svg></span><span><h2>Новый ремонт</h2><p>Пошаговая приёмка</p></span><span class="arrow">›</span></button><article class="active-repair"><h2><span>Активный ремонт</span><small>№12541</small></h2><div class="steps"><div class="step done"><span>1</span><small>Клиент</small></div><div class="step done"><span>2</span><small>Устройство</small></div><div class="step"><span>3</span><small>Проблема</small></div><div class="step"><span>4</span><small>Работы</small></div><div class="step"><span>5</span><small>Оплата</small></div><div class="step"><span>6</span><small>Выдать</small></div></div><div class="repair-summary"><div><strong>iPhone 15 Pro</strong><b>24 500 ₽</b></div><div>Иванов С.<br><small>Замена экрана</small></div></div><button class="cta" data-toast="Продолжаем оформление заказа №12541">Продолжить оформление</button></article></section>
+<section class="page" data-screen="clients"><h1 class="title">Клиенты</h1><p class="subtitle">Поиск человека, заказа или устройства</p><input class="search" placeholder="Имя, телефон или устройство"><div class="quick2"><button class="quick" data-toast="QR-сканер откроется в рабочей версии"><svg class="metal"><use href="#i-qr"/></svg><span><b>QR</b><small>Клиент или заказ</small></span></button><button class="quick" data-page="orders"><svg class="metal"><use href="#i-search"/></svg><span><b>Найти заказ</b><small>Номер или имя</small></span></button></div><div class="list"><article class="row"><div class="thumb">ИП</div><div><h3>Иван Петров</h3><p>iPhone 15 Pro · 4 заказа</p><span class="tag" style="color:#65e88a">Активный заказ ›</span></div><div class="price">24 500 ₽</div></article><article class="row"><div class="thumb">АК</div><div><h3>Анна Кузнецова</h3><p>iPhone 14 · 2 заказа</p><span class="tag">2 ремонта ›</span></div><div class="price">3 500 ₽</div></article><article class="row"><div class="thumb">СД</div><div><h3>Сергей Дмитриев</h3><p>Galaxy S23 · 3 заказа</p><span class="tag">История ›</span></div><div class="price">6 490 ₽</div></article><article class="row"><div class="thumb">ОМ</div><div><h3>Ольга Морозова</h3><p>POCO X5 · 1 заказ</p><span class="tag">Завершён ›</span></div><div class="price">2 900 ₽</div></article></div></section>
+<section class="page" data-screen="more"><h1 class="title">Ещё</h1><p class="subtitle">Настройки и дополнительные модули</p><div class="modules"><button class="module" data-toast="Настройки темы"><svg class="blue"><use href="#i-theme"/></svg><b>Тема</b><small>Тёмная / светлая</small></button><button class="module" data-toast="Настройки языка"><svg class="blue"><use href="#i-lang"/></svg><b>Язык</b><small>RU / EN</small></button><button class="module" data-toast="Центр уведомлений"><svg class="blue"><use href="#i-bell"/></svg><b>Уведомления</b><small>3 новых</small></button><button class="module" data-toast="Профиль владельца"><svg class="blue"><use href="#i-users"/></svg><b>Профиль</b><small>Владелец</small></button><button class="module" data-toast="Склад пока проектируется"><svg class="blue"><use href="#i-box"/></svg><b>Склад</b><small>36 позиций</small></button><button class="module" data-toast="Отчёты пока проектируются"><svg class="blue"><use href="#i-chart"/></svg><b>Отчёты</b><small>Сегодня</small></button></div></section>
+</main><nav class="tabbar" aria-label="Основная навигация"><button class="tab active" data-page="home"><svg><use href="#i-home"/></svg><span>Главная</span></button><button class="tab" data-page="orders"><svg><use href="#i-orders"/></svg><span>Заказы</span></button><button class="tab" data-page="repair"><svg><use href="#i-repair"/></svg><span>Ремонт</span></button><button class="tab" data-page="clients"><svg><use href="#i-users"/></svg><span>Клиенты</span></button><button class="tab" data-page="more"><svg><use href="#i-more"/></svg><span>Ещё</span></button></nav><div class="toast" id="toast"></div>
+<script>(function(){'use strict';var pages=document.querySelectorAll('[data-screen]');var tabs=document.querySelectorAll('.tab');var toast=document.getElementById('toast');var timer;function show(name){pages.forEach(function(p){p.classList.toggle('active',p.getAttribute('data-screen')===name)});tabs.forEach(function(t){t.classList.toggle('active',t.getAttribute('data-page')===name)});history.replaceState(null,'','#'+name);window.scrollTo(0,0)}document.addEventListener('click',function(e){var p=e.target.closest('[data-page]');if(p){show(p.getAttribute('data-page'));return}var m=e.target.closest('[data-toast]');if(m){clearTimeout(timer);toast.textContent=m.getAttribute('data-toast');toast.classList.add('show');timer=setTimeout(function(){toast.classList.remove('show')},1800)}});var initial=location.hash.slice(1);show(['home','orders','repair','clients','more'].indexOf(initial)>-1?initial:'home')})();</script>
 </body>
 </html>
