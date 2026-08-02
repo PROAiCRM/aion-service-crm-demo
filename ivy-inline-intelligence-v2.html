@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080e1b">
+<title>AION Service CRM — Invisible Ivy</title>
+<style>
+:root{color-scheme:dark;--bg:#080e1b;--panel:#0d1728;--panel2:#101d32;--field:#0a1526;--line:rgba(159,184,230,.15);--line2:rgba(111,169,255,.42);--text:#f6f8ff;--muted:#8fa0ba;--ghost:#61718a;--blue:#68adff;--violet:#8b78ff;--green:#70e0b2;--amber:#efc778;--red:#ff8292;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 70% -10%,rgba(70,105,255,.16),transparent 36%),var(--bg);color:var(--text)}button,input,textarea{font:inherit}.app{max-width:1120px;margin:0 auto;padding:18px 16px 110px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:11px}.logo{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#d7e5ff,#728bc3 31%,#293b63 60%,#b8c5e6);color:#07101d;font-weight:850;box-shadow:inset 0 1px 1px #fff8,0 12px 35px #4a70df33}.brand strong{display:block;letter-spacing:.08em;font-size:16px}.brand small{color:var(--muted)}.mode{color:#a9b8cd;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:8px 11px;background:#0b1525}.shell{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px}.card{background:linear-gradient(145deg,rgba(16,29,50,.97),rgba(9,17,31,.98));border:1px solid var(--line);border-radius:26px;box-shadow:0 28px 90px rgba(0,0,0,.32)}.main{padding:26px}.side{padding:20px;height:max-content;position:sticky;top:16px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#9dbfff}.title{margin:9px 0 6px;font-size:clamp(27px,4vw,43px);line-height:1.04}.subtitle{margin:0 0 25px;color:#9dacbf;line-height:1.5}.section{padding:21px 0;border-top:1px solid var(--line)}.section:first-of-type{border-top:0;padding-top:0}.label-row{display:flex;justify-content:space-between;gap:12px;align-items:end;margin-bottom:9px}.label-row label{font-size:13px;color:#d9e3f2}.label-row span{font-size:11px;color:#6f809b}.smart{position:relative}.input-shell{position:relative;border:1px solid var(--line);border-radius:17px;background:var(--field);transition:.2s;overflow:visible}.input-shell:focus-within{border-color:var(--line2);box-shadow:0 0 0 4px rgba(93,157,255,.08)}.input-shell.confirmed{border-color:rgba(112,224,178,.27)}.input-shell.ambiguous{border-color:rgba(239,199,120,.31)}.ghost-layer,.smart-input{width:100%;padding:16px 50px 16px 15px;font-size:16px;line-height:1.25;letter-spacing:.005em;white-space:pre;overflow:hidden}.ghost-layer{position:absolute;inset:0;color:transparent;pointer-events:none}.ghost-layer .typed{color:transparent}.ghost-layer .suffix{color:var(--ghost)}.smart-input{position:relative;display:block;border:0;background:transparent;color:var(--text);outline:none;caret-color:var(--blue)}.assist-button{position:absolute;right:8px;top:50%;translate:0 -50%;width:35px;height:35px;border:0;border-radius:11px;background:transparent;color:#6e819d;display:grid;place-items:center;cursor:pointer;transition:.2s}.assist-button[data-state="ghost"],.assist-button[data-state="correction"]{color:#77aef1;background:rgba(75,135,220,.1)}.assist-button[data-state="ambiguous"]{color:var(--amber);background:rgba(239,199,120,.09)}.assist-button[data-state="confirmed"]{color:var(--green)}.assist-button svg{width:18px;height:18px}.inline-key{position:absolute;right:48px;top:50%;translate:0 -50%;font-size:10px;color:#637590;border:1px solid rgba(129,155,198,.16);border-radius:6px;padding:3px 5px;opacity:0;transition:.18s;pointer-events:none}.input-shell:focus-within .inline-key.show{opacity:1}.dropdown{display:none;position:absolute;z-index:30;left:0;right:0;top:calc(100% + 7px);border:1px solid rgba(132,168,227,.22);border-radius:16px;background:rgba(10,20,36,.98);box-shadow:0 18px 55px rgba(0,0,0,.45);padding:6px;backdrop-filter:blur(18px)}.dropdown.open{display:block}.option{width:100%;border:0;border-radius:12px;background:transparent;color:#e9eef8;padding:12px 11px;display:flex;justify-content:space-between;gap:12px;text-align:left;cursor:pointer}.option:hover,.option.active{background:#142742}.option small{display:block;color:#7f91ac;margin-top:3px}.option .score{font-size:10px;color:#7890b0;white-space:nowrap}.micro-status{height:18px;margin:7px 3px 0;color:#657792;font-size:11px;transition:.2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.micro-status.good{color:#6cae94}.micro-status.warn{color:#a99161}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.plain{width:100%;border:1px solid var(--line);border-radius:16px;background:var(--field);color:var(--text);padding:15px;outline:none}.plain:focus{border-color:var(--line2);box-shadow:0 0 0 4px rgba(93,157,255,.08)}.summary{border:1px solid var(--line);border-radius:18px;background:#091426;padding:15px}.summary h3{margin:0 0 12px;font-size:15px}.row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-top:1px solid var(--line);font-size:12px}.row:first-of-type{border-top:0}.row span{color:#8192ac}.row b{text-align:right;max-width:64%}.invisible-note{display:flex;gap:10px;align-items:flex-start;padding:13px;border:1px solid rgba(104,173,255,.13);border-radius:16px;background:rgba(36,73,124,.12);color:#97aac5;font-size:12px;line-height:1.45}.spark{width:24px;height:24px;border-radius:9px;flex:0 0 24px;display:grid;place-items:center;color:#8fc0ff;background:#193153}.actions{display:grid;gap:9px;margin-top:14px}.primary,.secondary{border-radius:15px;padding:13px 15px;font-weight:730;cursor:pointer}.primary{border:0;color:white;background:linear-gradient(135deg,#61a8ff,#7565ef);box-shadow:0 12px 35px #4f73dd38}.primary:disabled{opacity:.4;cursor:not-allowed}.secondary{border:1px solid var(--line);background:#0b1729;color:#d8e3f4}.tiny{margin:13px 0 0;text-align:center;color:#647590;font-size:10px}.toast{position:fixed;left:50%;bottom:26px;translate:-50% 18px;opacity:0;pointer-events:none;background:#eff6ff;color:#07101c;padding:11px 15px;border-radius:999px;font-size:12px;font-weight:750;box-shadow:0 16px 55px #0008;transition:.23s;z-index:50}.toast.show{opacity:1;translate:-50% 0}.demo-strip{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.demo{border:1px solid var(--line);border-radius:999px;background:#0b1729;color:#8295b1;padding:7px 9px;font-size:11px;cursor:pointer}.demo:hover{color:#dce8f8;border-color:#43658e}
+@media(max-width:830px){.shell{grid-template-columns:1fr}.side{position:static;order:-1}.app{padding:12px 12px 90px}.main{padding:20px}.card{border-radius:22px}.top{margin-bottom:18px}.side .invisible-note{display:none}}
+@media(max-width:520px){.grid2{grid-template-columns:1fr}.main{padding:17px}.side{padding:16px}.mode{font-size:10px}.title{font-size:30px}.ghost-layer,.smart-input{font-size:15px;padding-left:13px}.inline-key{display:none}.input-shell:focus-within .assist-button[data-state="ghost"],.input-shell:focus-within .assist-button[data-state="correction"]{background:rgba(75,135,220,.13)}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><div class="logo">A</div><div><strong>AION</strong><small>Service CRM</small></div></div>
+    <div class="mode">Invisible Ivy · prototype v2</div>
+  </header>
+
+  <div class="shell">
+    <main class="card main">
+      <div class="eyebrow">Экспресс-приёмка</div>
+      <h1 class="title">Новый ремонт</h1>
+      <p class="subtitle">Заполняйте как обычно. Система понимает формулировки, исправляет ошибки и хранит единое значение незаметно.</p>
+
+      <section class="section">
+        <div class="label-row"><label for="complaint">Что случилось</label><span>Tab — принять</span></div>
+        <div class="smart" id="complaintSmart">
+          <div class="input-shell" id="complaintShell">
+            <div class="ghost-layer" aria-hidden="true"><span class="typed" id="complaintGhostTyped"></span><span class="suffix" id="complaintGhostSuffix"></span></div>
+            <input id="complaint" class="smart-input" autocomplete="off" placeholder="Например: разбился дисплей">
+            <span class="inline-key" id="complaintKey">Tab</span>
+            <button class="assist-button" id="complaintAssist" data-state="idle" aria-label="Открыть варианты"></button>
+          </div>
+          <div class="dropdown" id="complaintDropdown" role="listbox"></div>
+          <div class="micro-status" id="complaintStatus"></div>
+          <div class="demo-strip">
+            <button class="demo" data-complaint="разбился десплей">разбился десплей</button>
+            <button class="demo" data-complaint="экран разбился">экран разбился</button>
+            <button class="demo" data-complaint="зарядка отходит">зарядка отходит</button>
+            <button class="demo" data-complaint="lbcgktq">lbcgktq</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="label-row"><label for="device">Марка и модель</label><span>название или код</span></div>
+        <div class="smart" id="deviceSmart">
+          <div class="input-shell" id="deviceShell">
+            <div class="ghost-layer" aria-hidden="true"><span class="typed" id="deviceGhostTyped"></span><span class="suffix" id="deviceGhostSuffix"></span></div>
+            <input id="device" class="smart-input" autocomplete="off" placeholder="Например: айфон 14 про макс">
+            <span class="inline-key" id="deviceKey">Tab</span>
+            <button class="assist-button" id="deviceAssist" data-state="idle" aria-label="Открыть модели"></button>
+          </div>
+          <div class="dropdown" id="deviceDropdown" role="listbox"></div>
+          <div class="micro-status" id="deviceStatus"></div>
+          <div class="demo-strip">
+            <button class="demo" data-device="айфон 14 про макс">айфон 14 про макс</button>
+            <button class="demo" data-device="sma546b">sma546b</button>
+            <button class="demo" data-device="редми ноут 13 про">редми ноут 13 про</button>
+            <button class="demo" data-device="A2894">A2894</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid2">
+          <div><div class="label-row"><label for="name">Клиент</label></div><input id="name" class="plain" value="Алексей"></div>
+          <div><div class="label-row"><label for="phone">Телефон</label></div><input id="phone" class="plain" inputmode="tel" value="+7 900 123-45-67"></div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="card side">
+      <div class="summary">
+        <h3>Черновик приёмки</h3>
+        <div class="row"><span>Жалоба клиента</span><b id="rawComplaint">—</b></div>
+        <div class="row"><span>Единая позиция</span><b id="canonicalComplaint">Не определена</b></div>
+        <div class="row"><span>Устройство</span><b id="canonicalDevice">Не выбрано</b></div>
+        <div class="row"><span>Готовность</span><b id="readiness">Заполните поля</b></div>
+      </div>
+      <div class="invisible-note">
+        <div class="spark">✦</div>
+        <div>Интеллект не занимает отдельную панель. Он работает внутри строки и раскрывается только по вашему действию.</div>
+      </div>
+      <div class="actions">
+        <button class="primary" id="continueBtn" disabled>Продолжить оформление</button>
+        <button class="secondary" id="resetBtn">Очистить пример</button>
+      </div>
+      <p class="tiny">Демо не отправляет и не сохраняет данные.</p>
+    </aside>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const icon={idle:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="2"/></svg>',ghost:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M5 8l7-5 7 5M7 16h10"/></svg>',correction:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m5 12 4 4L19 6"/><path d="M4 20h16"/></svg>',ambiguous:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg>',confirmed:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 12 4 4L19 6"/></svg>'};
+const repairIntents=[
+ {id:'DISPLAY_ASSEMBLY',label:'Замена дисплейного модуля',aliases:['дисплей','дисплейный модуль','модуль','экран','разбился экран','разбит экран','разбился дисплей','разбит дисплей','нет изображения','черный экран','полосы на экране','матрица','oled','lcd','display','screen','десплей','дисплэй','диспелй','диспей','экаран','екран'],ambiguous:['дисплей','модуль','экран','разбился экран','разбит экран','разбился дисплей','разбит дисплей']},
+ {id:'DISPLAY_GLASS',label:'Замена стекла дисплея',aliases:['стекло','замена стекла','разбито стекло','треснуло стекло','трещина на стекле','переклейка стекла','переклейка','glass','стикло']},
+ {id:'TOUCHSCREEN',label:'Замена сенсора / тачскрина',aliases:['тач','тачскрин','сенсор','не работает сенсор','не нажимается экран','не реагирует экран','ghost touch','сам нажимает','фантомные нажатия','touch','тач скрин']},
+ {id:'BATTERY',label:'Замена аккумулятора',aliases:['аккумулятор','батарея','замена батареи','быстро разряжается','не держит заряд','вздулся аккумулятор','battery','акб','акумулятор','баторея']},
+ {id:'CHARGING_PORT',label:'Ремонт разъёма зарядки',aliases:['разъем зарядки','разъём зарядки','гнездо зарядки','порт зарядки','не заряжается','плохо заряжается','зарядка отходит','usb','usb c','type c','lightning','разьем','разем']},
+ {id:'BACK_GLASS',label:'Замена заднего стекла',aliases:['заднее стекло','разбита крышка','разбилось заднее стекло','back glass','задняя крышка']},
+ {id:'CAMERA',label:'Ремонт камеры',aliases:['камера','не работает камера','не фокусирует','трясется камера','стекло камеры','camera','камера мутная']},
+ {id:'SPEAKER',label:'Ремонт динамика',aliases:['динамик','тихо слышно','хрипит динамик','нет звука','разговорный динамик','speaker']},
+ {id:'MICROPHONE',label:'Ремонт микрофона',aliases:['микрофон','меня не слышно','плохо слышно меня','не пишет звук','microphone']},
+ {id:'WATER',label:'Диагностика после попадания жидкости',aliases:['утопленник','залили','попала вода','попала жидкость','после воды','влага','water damage','окисление']},
+ {id:'BOARD',label:'Ремонт системной платы',aliases:['плата','материнская плата','системная плата','пайка','контроллер питания','baseband','не включается']},
+ {id:'SOFTWARE',label:'Восстановление / настройка ПО',aliases:['прошивка','сброс','обновление','зависает','bootloop','бутлуп','не загружается','software']},
+ {id:'DIAGNOSTICS',label:'Диагностика устройства',aliases:['диагностика','проверка','не знаю что сломалось','посмотреть телефон','неисправность']}
+];
+const devices=[
+ {id:'ip15pm',brand:'Apple',model:'iPhone 15 Pro Max',aliases:['айфон 15 про макс','15pm','A3108','A2849']},
+ {id:'ip15p',brand:'Apple',model:'iPhone 15 Pro',aliases:['айфон 15 про','15pro','A3104','A2848']},
+ {id:'ip14pm',brand:'Apple',model:'iPhone 14 Pro Max',aliases:['айфон 14 про макс','14pm','A2894','A2651']},
+ {id:'ip14p',brand:'Apple',model:'iPhone 14 Pro',aliases:['айфон 14 про','14pro','A2890','A2650']},
+ {id:'ip13',brand:'Apple',model:'iPhone 13',aliases:['айфон 13','A2633','A2482']},
+ {id:'ips24u',brand:'Samsung',model:'Galaxy S24 Ultra',aliases:['самсунг с24 ультра','s24 ultra','SM-S928B']},
+ {id:'ipa55',brand:'Samsung',model:'Galaxy A55 5G',aliases:['самсунг а55','a55','SM-A556B']},
+ {id:'ipa54',brand:'Samsung',model:'Galaxy A54 5G',aliases:['самсунг а54','a54','SM-A546B']},
+ {id:'rn13p',brand:'Xiaomi',model:'Redmi Note 13 Pro 5G',aliases:['редми ноут 13 про','redmi note 13 pro','2312DRA50G']},
+ {id:'pocox6p',brand:'Xiaomi',model:'Poco X6 Pro 5G',aliases:['поко х6 про','poco x6 pro','2311DRK48G']},
+ {id:'hon90',brand:'Honor',model:'Honor 90',aliases:['хонор 90','REA-NX9']},
+ {id:'pix8p',brand:'Google',model:'Pixel 8 Pro',aliases:['пиксель 8 про','google pixel 8 pro','GC3VE']},
+ {id:'one12',brand:'OnePlus',model:'OnePlus 12',aliases:['ванплас 12','one plus 12','CPH2581']},
+ {id:'real12p',brand:'Realme',model:'Realme 12 Pro+',aliases:['реалми 12 про плюс','RMX3840']},
+ {id:'hwp60p',brand:'Huawei',model:'P60 Pro',aliases:['хуавей п60 про','MNA-LX9']}
+];
+const ru='йцукенгшщзхъфывапролджэячсмитьбю',en='qwertyuiop[]asdfghjkl;\'zxcvbnm,.';
+const state={complaint:{mode:'idle',canonical:null,options:[],replacement:null,suffix:''},device:{mode:'idle',canonical:null,options:[],replacement:null,suffix:''}};
+function norm(v){return v.normalize('NFKC').toLowerCase().replaceAll('ё','е').replace(/[(){}<>«»„“”"'`]/g,' ').replace(/[^a-zа-я0-9+.#\-/\s]/gi,' ').replace(/\s+/g,' ').trim()}
+function layout(v,from,to){return [...v].map(c=>{const i=from.indexOf(c);return i>=0?(to[i]||c):c}).join('')}
+function variants(v){const n=norm(v);return [...new Set([n,norm(layout(n,en,ru)),norm(layout(n,ru,en))].filter(Boolean))]}
+function dist(a,b){const d=Array.from({length:a.length+1},()=>Array(b.length+1).fill(0));for(let i=0;i<=a.length;i++)d[i][0]=i;for(let j=0;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++){const c=a[i-1]===b[j-1]?0:1;d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+c);if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])d[i][j]=Math.min(d[i][j],d[i-2][j-2]+c)}return d[a.length][b.length]}
+function score(q,a){if(!q||!a)return 0;if(q===a)return 1;if(q.includes(a)||a.includes(q))return .78+Math.min(q.length,a.length)/Math.max(q.length,a.length)*.18;const qc=q.replace(/[\s\-_/+.]/g,''),ac=a.replace(/[\s\-_/+.]/g,'');if(qc===ac)return .97;const ed=1-dist(qc,ac)/Math.max(qc.length,ac.length,1);const qt=q.split(' '),at=a.split(' ');let m=0;for(const x of qt)if(at.some(y=>x===y||dist(x,y)<=((Math.max(x.length,y.length)>=7)?2:1)))m++;return Math.max(m/Math.max(qt.length,at.length)*.9,ed>=.7?ed*.87:0)}
+function commonPrefix(a,b){let i=0;while(i<Math.min(a.length,b.length)&&a[i].toLowerCase()===b[i].toLowerCase())i++;return i}
+function analyzeComplaint(raw){const vs=variants(raw);if(!vs.length)return{mode:'idle',options:[]};const ranked=repairIntents.map(x=>{let best=0,alias='';for(const a of x.aliases)for(const q of vs){const s=score(q,norm(a));if(s>best){best=s;alias=a}}return{...x,score:best,alias}}).filter(x=>x.score>=.61).sort((a,b)=>b.score-a.score);const p=ranked[0];if(!p)return{mode:'idle',options:[]};const generic=p.id==='DISPLAY_ASSEMBLY'&&vs.some(q=>/(^| )(экран|дисплей|десплей|модуль)( |$)/.test(q)&&!/(стекл|сенсор|тач|изображ|полос|пятн|матриц|oled|lcd|черн)/.test(q));const close=ranked[1]&&p.score-ranked[1].score<.08;if(generic||close)return{mode:'ambiguous',canonical:p,options:ranked.slice(0,3),suffix:'',replacement:null};const n=vs[0],typo=p.alias&&norm(p.alias)!==n&&p.score>=.84;if(typo)return{mode:'correction',canonical:p,options:ranked.slice(0,3),suffix:'',replacement:p.alias};const pref=commonPrefix(raw.trim(),p.label),suffix=pref>=Math.max(2,raw.trim().length-1)?p.label.slice(pref):'';return{mode:suffix?'ghost':'confirmed',canonical:p,options:ranked.slice(0,3),suffix,replacement:null}}
+function analyzeDevice(raw){const vs=variants(raw);if(!vs.length)return{mode:'idle',options:[]};const ranked=devices.map(d=>{let best=0,matched='';for(const a of [d.brand,d.model,d.brand+' '+d.model,...d.aliases])for(const q of vs){const s=score(q,norm(a));if(s>best){best=s;matched=a}}return{...d,score:best,matched}}).filter(x=>x.score>=.61).sort((a,b)=>b.score-a.score);const p=ranked[0];if(!p)return{mode:'idle',options:[]};const label=p.brand+' '+p.model,close=ranked[1]&&p.score-ranked[1].score<.08;if(close)return{mode:'ambiguous',canonical:null,options:ranked.slice(0,4),suffix:'',replacement:null};const pref=commonPrefix(raw.trim(),label),suffix=pref>=Math.max(2,raw.trim().length-1)?label.slice(pref):'';const compactRaw=norm(raw).replace(/[^a-zа-я0-9]/gi,''),compactLabel=norm(label).replace(/[^a-zа-я0-9]/gi,'');const correction=p.score>=.9&&compactRaw!==compactLabel&&!suffix;return{mode:correction?'correction':suffix?'ghost':'confirmed',canonical:p,options:ranked.slice(0,4),suffix,replacement:correction?label:null}}
+function setupSmart(kind,analyze){const input=document.getElementById(kind),shell=document.getElementById(kind+'Shell'),assist=document.getElementById(kind+'Assist'),drop=document.getElementById(kind+'Dropdown'),typed=document.getElementById(kind+'GhostTyped'),suffix=document.getElementById(kind+'GhostSuffix'),key=document.getElementById(kind+'Key'),status=document.getElementById(kind+'Status');let active=0;
+ function render(open=false){const a=state[kind];typed.textContent=input.value;suffix.textContent=a.suffix||'';assist.dataset.state=a.mode;assist.innerHTML=icon[a.mode]||icon.idle;shell.className='input-shell '+(a.mode==='confirmed'?'confirmed':a.mode==='ambiguous'?'ambiguous':'');key.classList.toggle('show',a.mode==='ghost'||a.mode==='correction');status.className='micro-status'+(a.mode==='confirmed'?' good':a.mode==='ambiguous'?' warn':'');status.textContent=a.mode==='correction'?'Исправление готово — Tab или выход из поля':a.mode==='ambiguous'?'Нужно уточнение · варианты спрятаны в кнопке справа':a.mode==='confirmed'?'Распознано':a.mode==='ghost'?'':'';drop.innerHTML='';(a.options||[]).forEach((o,i)=>{const label=kind==='device'?o.brand+' '+o.model:o.label;const sub=kind==='device'?(o.matched||'совпадение'):(o.alias?'по фразе «'+o.alias+'»':'единая позиция');const b=document.createElement('button');b.className='option'+(i===active?' active':'');b.type='button';b.innerHTML='<span><b>'+escapeHtml(label)+'</b><small>'+escapeHtml(sub)+'</small></span><span class="score">'+Math.round(o.score*100)+'%</span>';b.onclick=()=>accept(o);drop.appendChild(b)});drop.classList.toggle('open',open&&(a.options||[]).length>0);updateSummary()}
+ function accept(option){const a=state[kind],o=option||a.options?.[0];if(!o)return;if(kind==='device'){input.value=o.brand+' '+o.model;state.device={mode:'confirmed',canonical:o,options:a.options,suffix:'',replacement:null}}else{input.value=o.label;state.complaint={mode:'confirmed',canonical:o,options:a.options,suffix:'',replacement:null}}active=0;render(false);input.focus();input.setSelectionRange(input.value.length,input.value.length)}
+ function recalc(){state[kind]=analyze(input.value);active=0;render(false)}
+ input.addEventListener('input',recalc);input.addEventListener('keydown',e=>{const a=state[kind];if((e.key==='Tab'||(e.key==='ArrowRight'&&input.selectionStart===input.value.length))&&(a.mode==='ghost'||a.mode==='correction')){e.preventDefault();if(a.mode==='correction'&&a.replacement){input.value=a.replacement;state[kind]={...a,mode:'confirmed',suffix:'',replacement:null};render(false)}else accept(a.canonical||a.options?.[0])}else if(e.key==='ArrowDown'&&(a.options||[]).length){e.preventDefault();drop.classList.add('open');active=Math.min(active+1,a.options.length-1);render(true)}else if(e.key==='Enter'&&drop.classList.contains('open')){e.preventDefault();accept(a.options[active])}else if(e.key==='Escape'){drop.classList.remove('open')}});input.addEventListener('blur',()=>setTimeout(()=>{const a=state[kind];if(a.mode==='correction'&&a.replacement){input.value=a.replacement;state[kind]={...a,mode:'confirmed',suffix:'',replacement:null};render(false)}else drop.classList.remove('open')},130));assist.onclick=()=>{const will=!drop.classList.contains('open');active=0;render(will)};render(false);return{recalc,accept}}
+function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+function updateSummary(){const raw=document.getElementById('complaint').value.trim(),c=state.complaint.canonical,d=state.device.canonical;document.getElementById('rawComplaint').textContent=raw||'—';document.getElementById('canonicalComplaint').textContent=c?.label||'Не определена';document.getElementById('canonicalDevice').textContent=d?(d.brand+' '+d.model):'Не выбрано';const ready=Boolean(c&&d);document.getElementById('readiness').textContent=ready?'Можно продолжать':'Заполните поля';document.getElementById('continueBtn').disabled=!ready}
+const complaintCtl=setupSmart('complaint',analyzeComplaint),deviceCtl=setupSmart('device',analyzeDevice);
+document.querySelectorAll('[data-complaint]').forEach(b=>b.onclick=()=>{complaint.value=b.dataset.complaint;complaintCtl.recalc();complaint.focus()});document.querySelectorAll('[data-device]').forEach(b=>b.onclick=()=>{device.value=b.dataset.device;deviceCtl.recalc();device.focus()});
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1800)}
+document.getElementById('continueBtn').onclick=()=>toast('Позиция и модель подтверждены');document.getElementById('resetBtn').onclick=()=>{complaint.value='';device.value='';state.complaint={mode:'idle',canonical:null,options:[],replacement:null,suffix:''};state.device={mode:'idle',canonical:null,options:[],replacement:null,suffix:''};complaintCtl.recalc();deviceCtl.recalc();complaint.focus()};document.addEventListener('click',e=>{if(!e.target.closest('.smart'))document.querySelectorAll('.dropdown').forEach(x=>x.classList.remove('open'))});updateSummary();
+</script>
+</body>
+</html>
