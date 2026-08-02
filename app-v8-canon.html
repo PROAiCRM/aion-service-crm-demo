@@ -23,14 +23,15 @@ body{display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFon
 .overlay-close{right:3.4%;width:12%;height:8%;z-index:6}.close-new{top:46%}.close-search{top:32.5%}.close-qr{top:35.2%}
 #status{position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;color:#8fa0b8;font-size:14px;line-height:1.45;z-index:2}
 .ready #status{display:none}.failed #status{color:#ff8799}
+.retry{margin-top:14px;border:1px solid #2e79ce;border-radius:12px;background:#071a31;color:#dcecff;padding:11px 16px;font-weight:600}
 .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @supports(height:100dvh){#app{width:min(100vw,calc(100dvh * 320 / 569));max-height:100dvh}}
 </style>
 </head>
 <body>
 <div id="app" role="application" aria-label="AION Service CRM — Canon Fidelity Prototype">
-  <div id="status">Подготавливаем канонический экран…</div>
-  <img id="screen" class="screen" alt="" draggable="false">
+  <div id="status">Загружаем канонический экран…</div>
+  <img id="screen" class="screen" alt="" draggable="false" decoding="async" fetchpriority="high">
 
   <button class="hit nav nav-home" data-page="home"><span class="sr">Главная</span></button>
   <button class="hit nav nav-orders" data-page="orders"><span class="sr">Заказы</span></button>
@@ -55,15 +56,14 @@ body{display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFon
   </div>
 
   <div id="overlay" aria-hidden="true">
-    <img id="overlayImage" alt="" draggable="false">
+    <img id="overlayImage" alt="" draggable="false" decoding="async">
     <button id="overlayClose" class="hit overlay-close"><span class="sr">Закрыть</span></button>
   </div>
 </div>
 <script>
 (() => {
   'use strict';
-  const VERSION = '20260802-4';
-  const names = ['home','orders','repair','clients','more','new-repair','qr','search'];
+  const VERSION = '20260802-5';
   const app = document.getElementById('app');
   const status = document.getElementById('status');
   const screen = document.getElementById('screen');
@@ -76,16 +76,25 @@ body{display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFon
     repair: document.getElementById('repairHits'),
     clients: document.getElementById('clientsHits')
   };
-  let assets = {};
   let currentPage = 'home';
 
-  async function extractRaster(name) {
-    const response = await fetch(`assets/v8/${name}.svg?v=${VERSION}`, { cache: 'no-store' });
-    if (!response.ok) throw new Error(`${name}: HTTP ${response.status}`);
-    const source = await response.text();
-    const match = source.match(/href="(data:image\/webp;base64,[^"]+)"/);
-    if (!match) throw new Error(`${name}: embedded WebP not found`);
-    return match[1];
+  const assetUrl = name => `assets/v8/${name}.svg?v=${VERSION}`;
+
+  function setLoading(message) {
+    app.classList.remove('ready','failed');
+    status.textContent = message;
+  }
+
+  function markReady() {
+    app.classList.remove('failed');
+    app.classList.add('ready');
+  }
+
+  function markFailed(name) {
+    app.classList.remove('ready');
+    app.classList.add('failed');
+    status.innerHTML = `Не удалось открыть экран «${name}».<br><button class="retry" type="button">Повторить</button>`;
+    status.querySelector('.retry')?.addEventListener('click', () => showPage(currentPage, true));
   }
 
   function closeOverlay() {
@@ -94,24 +103,26 @@ body{display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFon
     overlayImage.removeAttribute('src');
   }
 
-  function showPage(page) {
-    if (!assets[page]) return;
+  function showPage(page, forceReload = false) {
     currentPage = page;
-    screen.src = assets[page];
-    screen.alt = page;
-    Object.entries(hitGroups).forEach(([name, element]) => {
-      element.hidden = name !== page;
-    });
+    setLoading('Загружаем канонический экран…');
+    Object.entries(hitGroups).forEach(([name, element]) => { element.hidden = name !== page; });
     closeOverlay();
+    screen.onload = markReady;
+    screen.onerror = () => markFailed(page);
+    const suffix = forceReload ? `&retry=${Date.now()}` : '';
+    screen.src = `${assetUrl(page)}${suffix}`;
   }
 
   function showOverlay(name) {
-    if (!assets[name]) return;
-    overlayImage.src = assets[name];
-    overlayImage.alt = name;
+    overlayImage.onload = () => {
+      overlay.classList.add('active');
+      overlay.setAttribute('aria-hidden', 'false');
+    };
+    overlayImage.onerror = () => markFailed(name);
+    overlayImage.src = assetUrl(name);
+    overlayImage.alt = '';
     overlayClose.className = `hit overlay-close ${name === 'new-repair' ? 'close-new' : name === 'search' ? 'close-search' : 'close-qr'}`;
-    overlay.classList.add('active');
-    overlay.setAttribute('aria-hidden', 'false');
   }
 
   document.querySelectorAll('[data-page]').forEach(button => {
@@ -121,22 +132,9 @@ body{display:grid;place-items:center;font-family:-apple-system,BlinkMacSystemFon
     button.addEventListener('click', () => showOverlay(button.dataset.overlay));
   });
   overlayClose.addEventListener('click', closeOverlay);
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') closeOverlay();
-  });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeOverlay(); });
 
-  (async () => {
-    try {
-      const values = await Promise.all(names.map(extractRaster));
-      assets = Object.fromEntries(names.map((name, index) => [name, values[index]]));
-      showPage('home');
-      app.classList.add('ready');
-    } catch (error) {
-      console.error(error);
-      app.classList.add('failed');
-      status.textContent = 'Канонический экран временно недоступен. Используйте сохранённую рабочую версию.';
-    }
-  })();
+  showPage('home');
 })();
 </script>
 </body>
