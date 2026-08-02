@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080e1b">
+<title>AION Service CRM — Inline Intelligence</title>
+<style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080e1b}iframe{display:block;width:100%;height:100%;border:0;background:#080e1b}</style>
+</head>
+<body>
+<iframe id="app" title="AION Service CRM Inline Intelligence" src="ivy-inline-intelligence-v2.html?v=20260802-3"></iframe>
+<script>
+const frame=document.getElementById('app');
+frame.addEventListener('load',()=>{
+  const doc=frame.contentDocument;
+  const win=frame.contentWindow;
+  if(!doc||!win)return;
+  const style=doc.createElement('style');
+  style.textContent=`
+    .micro-status{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+    .mode,.invisible-note,.demo-strip{display:none!important}
+    .subtitle{max-width:720px}
+    @media(max-width:830px){.side{order:2!important}.main{order:1!important}}
+  `;
+  doc.head.appendChild(style);
+
+  const complaint=doc.getElementById('complaint');
+  const device=doc.getElementById('device');
+  const typoMap=new Map([
+    ['десплей','дисплей'],['дисплэй','дисплей'],['диспелй','дисплей'],['диспей','дисплей'],
+    ['экаран','экран'],['екран','экран'],['стикло','стекло'],['разьем','разъём'],['разем','разъём'],
+    ['акумулятор','аккумулятор'],['баторея','батарея'],['тачь','тач'],['lbcgktq','дисплей']
+  ]);
+  complaint?.addEventListener('blur',()=>{
+    const key=String(complaint.value||'').trim().toLowerCase();
+    const replacement=typoMap.get(key);
+    if(!replacement)return;
+    complaint.value=replacement;
+    try{win.complaintCtl?.recalc?.()}catch{}
+    complaint.dispatchEvent(new Event('input',{bubbles:true}));
+  });
+  complaint?.setAttribute('aria-label','Что случилось. Автодополнение принимается клавишей Tab. Варианты открываются кнопкой внутри поля.');
+  device?.setAttribute('aria-label','Марка и модель. Можно вводить название или код модели. Автодополнение принимается клавишей Tab.');
+});
+</script>
+</body>
+</html>
