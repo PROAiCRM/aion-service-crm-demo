@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070b13">
+<title>AION Service CRM — EVE Техконсультант</title>
+<link rel="stylesheet" href="engineer-consult-v0-1.css?v=20260802-1">
+</head>
+<body>
+<main class="app-shell">
+  <header class="topbar"><div class="brand"><div class="aion-orb"></div><div><strong>AION Service CRM</strong><small>Рабочее место инженера</small></div></div><button class="avatar" aria-label="Профиль">АК</button></header>
+  <section class="order-head">
+    <button class="back" type="button">‹ Заказы</button>
+    <div class="order-title"><div><span class="eyebrow">ЗАКАЗ №1248 · ДИАГНОСТИКА</span><h1>iPhone 14 Pro</h1><p>После замены дисплея недоступен Face ID</p></div><span class="risk-badge">Нужна осторожность</span></div>
+    <div class="device-meta"><span>256 GB</span><span>iOS 18</span><span>Следов жидкости не отмечено</span><span>Ранее вскрывался</span></div>
+  </section>
+  <section class="workspace">
+    <div class="main-column">
+      <article class="panel stage-card"><div class="panel-title"><div><span class="eyebrow">ТЕКУЩИЙ ЭТАП</span><h2>Диагностика после вмешательства</h2></div><span class="time-pill">18 мин</span></div><div class="check-grid"><label><input type="checkbox" checked> Устройство включается</label><label><input type="checkbox" checked> Изображение и сенсор работают</label><label><input type="checkbox"> Проверены шлейфы и посадка</label><label><input type="checkbox"> Выполнен контрольный тест</label></div><div class="stage-actions"><button class="secondary">Добавить измерение</button><button class="secondary">Прикрепить фото</button><button class="primary">Завершить диагностику</button></div></article>
+      <article class="panel history-card"><div class="panel-title"><div><span class="eyebrow">КОНТЕКСТ ЗАКАЗА</span><h2>Что уже известно</h2></div></div><div class="timeline"><div class="event"><span></span><div><strong>Дисплей заменён</strong><p>Использована совместимая OLED-сборка. Поставщик: Demo Parts.</p><small>Сегодня, 14:10 · инженер Алексей</small></div></div><div class="event"><span></span><div><strong>До ремонта Face ID работал</strong><p>Отмечено при приёмке и подтверждено экспресс-проверкой.</p><small>Сегодня, 13:42</small></div></div><div class="event"><span></span><div><strong>Устройство ранее вскрывалось</strong><p>Есть следы предыдущего ремонта в верхней части корпуса.</p><small>Приёмка</small></div></div></div></article>
+    </div>
+    <aside class="side-column">
+      <article class="eve-card"><div class="eve-head"><div class="eve-orb"></div><div><strong>EVE Техконсультант</strong><small>Скрытый инженерный помощник</small></div><span class="online">готова</span></div><p>Задайте вопрос по этому ремонту. Контекст заказа уже подставлен — модель, симптом, этап, использованная деталь и история.</p><button id="openConsult" class="consult-button">Спросить инженера</button><div class="quick-prompts"><button data-prompt="Какие причины проверить сначала и в каком порядке?">Причины по порядку</button><button data-prompt="Какие риски есть перед повторным разбором?">Риски разборки</button><button data-prompt="Как проверить качество установленного дисплея?">Проверить дисплей</button></div></article>
+      <article class="panel guard-card"><span class="eyebrow">EVE ЗАМЕТИЛА</span><h3>Не меняйте детали вслепую</h3><p>Симптом появился после вмешательства. Сначала зафиксируйте исходное состояние, проверьте соединения и исключите механическое воздействие. Ответ ассистента не заменяет измерения и сервисную документацию.</p></article>
+    </aside>
+  </section>
+</main>
+<div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
+<section id="consultDrawer" class="consult-drawer" aria-hidden="true">
+  <header class="drawer-head"><div class="eve-head"><div class="eve-orb"></div><div><strong>EVE · консультация</strong><small>Заказ №1248 · iPhone 14 Pro</small></div></div><button id="closeConsult" class="close" aria-label="Закрыть">×</button></header>
+  <div class="context-strip"><span>Диагностика</span><span>Face ID</span><span>После замены дисплея</span><span>Ранее вскрывался</span></div>
+  <div id="consultBody" class="consult-body"><div class="intro-message"><strong>Что именно вызывает сомнение?</strong><p>Опишите симптом, что уже проверили и какое действие собираетесь выполнить. EVE построит безопасный диагностический маршрут, покажет риски и уровень уверенности.</p></div><div class="suggestions"><button data-prompt="После замены дисплея Face ID стал недоступен. Что проверить до повторной замены деталей?">Что проверить сначала?</button><button data-prompt="Стоит ли повторно разбирать устройство и какие риски при этом учитывать?">Риски повторного разбора</button><button data-prompt="Как понять, что проблема связана с установленным дисплеем, а не с другим узлом?">Связь с дисплеем</button></div></div>
+  <footer class="composer"><textarea id="questionInput" rows="3" placeholder="Например: после замены дисплея Face ID не активируется. Что безопасно проверить сначала?"></textarea><div class="composer-actions"><button id="addContext" class="secondary">＋ Контекст</button><button id="sendQuestion" class="primary">Получить консультацию</button></div></footer>
+</section>
+<div id="toast" class="toast" role="status"></div>
+<script src="engineer-consult-v0-1.js?v=20260802-1"></script>
+</body>
+</html>
