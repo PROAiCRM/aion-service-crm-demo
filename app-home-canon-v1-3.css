@@ -1,0 +1,9 @@
+.app-shell{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
+.queue-section{padding-bottom:10px}
+.queue-track{gap:6px}
+.order-card{padding:6px 5px 5px}
+.device{height:62px}
+.order-status{margin-top:5px;padding:3px 2px}
+.tab-bar{position:relative!important;left:auto!important;bottom:auto!important;transform:none!important;width:100%!important;height:64px;margin:10px 0 0;z-index:5}
+.toast{bottom:calc(96px + env(safe-area-inset-bottom))}
+@media(max-width:365px){.app-shell{padding-bottom:calc(106px + env(safe-area-inset-bottom))}.device{height:58px}.tab-bar{height:60px}}
