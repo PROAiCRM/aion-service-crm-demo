@@ -1,0 +1,14 @@
+{
+  "name": "AION Repair Offer",
+  "short_name": "Repair Offer",
+  "description": "Понятные варианты ремонта и фиксируемое решение клиента",
+  "start_url": "./repair-offer-v0-2.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#08101d",
+  "theme_color": "#08101d",
+  "lang": "ru",
+  "icons": [
+    {"src":"repair-offer-icon-v0-2.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
