@@ -1,0 +1,41 @@
+name: Build v8 Safari Raster
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'assets/v8/*.svg'
+      - 'tools/build_v8_raster.py'
+      - '.github/workflows/build-v8-raster.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Safari-compatible raster assets
+        run: python3 tools/build_v8_raster.py
+
+      - name: Validate generated files
+        run: |
+          test -f app-v8-raster.html
+          test "$(find assets/v8-raster -maxdepth 1 -name '*.webp' | wc -l)" -eq 8
+          ! grep -q 'assets/v8/' app-v8-raster.html
+          ! grep -q '\.svg' app-v8-raster.html
+
+      - name: Commit generated raster package
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/v8-raster app-v8-raster.html
+          if git diff --cached --quiet; then
+            echo "No generated changes"
+            exit 0
+          fi
+          git commit -m "build(v8): generate Safari-compatible raster package"
+          git push
