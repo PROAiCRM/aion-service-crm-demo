@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080d19">
+  <title>AION Service CRM — Home Canon v1.1</title>
+  <link rel="stylesheet" href="app-home-canon-v1.css?v=20260802-1">
+  <link rel="stylesheet" href="app-home-canon-v1-1.css?v=20260802-1">
+</head>
+<body>
+  <main id="app" class="app-shell" aria-label="AION Service CRM">
+    <header id="header" class="app-header"></header>
+    <section id="overview" class="overview-grid" aria-label="Обзор"></section>
+    <section id="stats" class="stats-grid" aria-label="Статистика"></section>
+    <section id="actions" class="actions-grid" aria-label="Быстрые действия"></section>
+    <section class="queue-section" aria-labelledby="queue-title">
+      <div class="section-heading">
+        <h2 id="queue-title">Рабочая очередь</h2>
+        <button class="text-action" type="button" data-action="view-all">Смотреть все <span aria-hidden="true">›</span></button>
+      </div>
+      <div id="queue" class="queue-track"></div>
+    </section>
+    <nav id="tabbar" class="tab-bar" aria-label="Основная навигация"></nav>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="contextMenu" class="context-menu" hidden><button type="button" data-action="edit-order">Редактировать</button></div>
+  <script src="app-home-canon-v1.js?v=20260802-1"></script>
+  <script src="app-home-canon-v1-1.js?v=20260802-1"></script>
+</body>
+</html>
