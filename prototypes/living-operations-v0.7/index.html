@@ -7,7 +7,8 @@
 <title>AION Service — Living Operations OS v0.7</title>
 <link rel="stylesheet" href="../mobile-v0.5/style.css?v=5e">
 <link rel="stylesheet" href="../konsta-ios26-v0.6/konsta.css?v=0db1983">
-<link rel="stylesheet" href="v07.css?v=07">
+<link rel="stylesheet" href="v07.css?v=07r2">
+<link rel="stylesheet" href="v07-header.css?v=07h1">
 </head>
 <body>
 <div class="app" id="app">
@@ -47,27 +48,12 @@
 <symbol id="i-login" viewBox="0 0 24 24"><path d="M10 5H5v14h5M13 8l4 4-4 4M17 12H8"/></symbol>
 <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
 </defs></svg>
-
 <div class="shade" id="shade"></div>
-<header class="header">
-  <div class="topbar">
-    <button class="headBtn" id="leftBtn" aria-label="Меню"></button>
-    <div class="title" id="title">Главная</div>
-    <button class="headBtn" id="settingsBtn" aria-label="Настройки"><svg class="ico lg"><use href="#i-gear"/></svg></button>
-  </div>
-</header>
-
+<header class="header"><div class="topbar"><button class="headBtn" id="leftBtn" aria-label="Меню"></button><div class="title" id="title">Главная</div><button class="headBtn" id="settingsBtn" aria-label="Настройки"><svg class="ico lg"><use href="#i-gear"/></svg></button></div></header>
 <main class="stage" id="stage"></main>
 <aside class="drawer" id="drawer"><div class="drawerScroll" id="drawerScroll"></div></aside>
 <section class="settingsRail" id="settingsRail"><div class="settingsBox glass"></div></section>
-<section class="bottomSheet" id="bottomSheet">
-  <button class="sheetTop" id="sheetTop" aria-label="Открыть или закрыть нижнюю панель" style="width:100%;border:0;background:transparent"><span class="handle"></span></button>
-  <div class="sheetActions">
-    <button class="sheetAction" data-go="capture"><span class="dual"><svg class="ico"><use href="#i-camera"/></svg><svg class="ico"><use href="#i-qr"/></svg></span><span id="photoLabel">Фото / QR</span></button>
-    <span class="vline"></span>
-    <button class="sheetAction" data-go="search"><span class="dual"><svg class="ico"><use href="#i-search"/></svg><svg class="ico"><use href="#i-mic"/></svg></span><span id="searchLabel">Поиск / Голос</span></button>
-  </div>
-</section>
+<section class="bottomSheet" id="bottomSheet"><button class="sheetTop" id="sheetTop" aria-label="Открыть или закрыть нижнюю панель" style="width:100%;border:0;background:transparent"><span class="handle"></span></button><div class="sheetActions"><button class="sheetAction" data-go="capture"><span class="dual"><svg class="ico"><use href="#i-camera"/></svg><svg class="ico"><use href="#i-qr"/></svg></span><span id="photoLabel">Фото / QR</span></button><span class="vline"></span><button class="sheetAction" data-go="search"><span class="dual"><svg class="ico"><use href="#i-search"/></svg><svg class="ico"><use href="#i-mic"/></svg></span><span id="searchLabel">Поиск / Голос</span></button></div></section>
 <button class="bottomPeek" id="bottomPeek" aria-label="Открыть Фото / QR и Поиск / Голос"><span class="handle"></span></button>
 <section class="modal glass" id="modal"></section><div class="dragGhost" id="dragGhost"></div><div class="toast" id="toast"></div>
 </div>
