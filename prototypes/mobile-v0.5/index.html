@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#07111d">
+<title>AION Service CRM Mobile v0.5</title>
+<style>html,body{margin:0;width:100%;height:100%;background:#060b12;color:#eef6ff;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif}body{display:grid;place-items:center}.wrap{padding:24px;text-align:center}.t{font-size:16px;font-weight:650}.s{margin-top:10px;opacity:.62;font-size:12px;line-height:1.5}.err{color:#ff9aa9}</style>
+</head>
+<body>
+<div class="wrap"><div class="t" id="status">Загрузка AION Service CRM…</div><div class="s" id="sub">Safari-compatible v0.5</div></div>
+<script>
+(async()=>{
+ const st=document.getElementById('status'),sub=document.getElementById('sub');
+ function fail(e){st.className='t err';st.textContent='Не удалось открыть прототип';sub.textContent=String(e&&e.message?e.message:e)}
+ function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error('Не удалось загрузить декодер'));document.head.appendChild(s)})}
+ try{
+   const r=await fetch('../mobile-v0.4/index.html',{cache:'no-store'});
+   if(!r.ok)throw new Error('Источник v0.4 недоступен: '+r.status);
+   const loader=await r.text();
+   const m=loader.match(/const b='([^']+)'/);
+   if(!m)throw new Error('Не найден пакет прототипа');
+   try{await loadScript('https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js')}catch(_){await loadScript('https://unpkg.com/pako@2.1.0/dist/pako.min.js')}
+   if(!window.pako)throw new Error('Декодер не запущен');
+   const raw=atob(m[1]);
+   const bytes=new Uint8Array(raw.length);
+   for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
+   const html=window.pako.ungzip(bytes,{to:'string'});
+   if(!/^<!doctype html>/i.test(html.trim()))throw new Error('Некорректный HTML прототипа');
+   document.open();document.write(html);document.close();
+ }catch(e){fail(e)}
+})();
+</script>
+</body>
+</html>
