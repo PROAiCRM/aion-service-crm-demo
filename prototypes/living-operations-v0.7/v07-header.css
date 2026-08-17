@@ -1,0 +1,5 @@
+/* Living Operations v0.7 header contract: Home = menu/title/settings; nested = back+home/title/settings. */
+.topbar{grid-template-columns:auto minmax(0,1fr) auto!important;column-gap:calc(4px*var(--space-scale))!important}
+.navCluster{grid-column:1;grid-row:1}
+.title{position:static!important;left:auto!important;transform:none!important;width:auto!important;min-width:0;grid-column:2;grid-row:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.topbar>#settingsBtn{grid-column:3;grid-row:1}
