@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>AION Wireframe</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+<div id="app">
+<div id="home" class="page on"></div>
+<div id="clients" class="page"></div><div id="orders" class="page"></div><div id="repairs" class="page"></div>
+<div id="services" class="page"></div><div id="inventory" class="page"></div><div id="suppliers" class="page"></div>
+<div id="docs" class="page"></div><div id="tasks" class="page"></div><div id="finance" class="page"></div>
+<div id="notify" class="page"></div><div id="reports" class="page"></div><div id="history" class="page"></div>
+<div id="settingspage" class="page"></div><div id="newrepair" class="page"></div>
+
+<div class="bottomHandle"><div id="bottomHandle" class="handle"></div></div>
+
+<div id="leftMask" class="scrim"><aside id="leftDrawer" class="drawer left">
+  <div class="dhead"><div class="dtitle">Настройки</div><button class="close" data-close="left">×</button></div>
+  <div class="note">Тема, язык и размер текста/иконок. Работает на всех страницах.</div>
+  <div class="setting"><b>Тема</b><div class="seg"><button id="lightB">Светлая</button><button id="darkB">Тёмная</button></div></div>
+  <div class="setting"><b>Язык</b><div class="seg"><button id="ruB">Русский</button><button id="enB">English</button></div></div>
+  <div class="setting"><b>Размер</b><span>Текст и иконки</span><div class="slider"><button id="minus">A−</button><input id="range" type="range" min=".9" max="1.25" step=".05"><button id="plus">A+</button></div></div>
+  <div class="setting"><button id="homeFromSettings">Домой</button></div>
+</aside></div>
+
+<div id="rightMask" class="scrim"><aside id="rightDrawer" class="drawer right">
+  <div class="dhead"><div class="dtitle">Меню CRM</div><button class="close" data-close="right">×</button></div>
+  <div class="note">Нажать — открыть. Зажать и потянуть в свободную зону на главной — закрепить. Свайп вправо — закрыть.</div>
+  <div id="menu"></div>
+</aside></div>
+
+<div id="sheetMask" class="sheetMask"></div><div id="sheetWrap" class="sheetWrap"><div id="sheet" class="sheet"><div class="grab"></div><div id="sheetBody"></div></div></div>
+<div id="toast" class="toast"></div>
+</div>
+<script src="app1.js"></script>
+<script src="app2.js"></script>
+<script src="app3.js"></script>
+<script src="app4.js"></script>
+</body></html>
