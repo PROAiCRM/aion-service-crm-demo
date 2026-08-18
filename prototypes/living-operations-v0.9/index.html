@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#0a0f17">
+  <title>AION Service — Mobile CRM v0.9 DNA</title>
+  <link rel="stylesheet" href="v09.css?v=dna01">
+</head>
+<body>
+<div class="app" id="app">
+  <svg class="icon-sprite" aria-hidden="true">
+    <defs>
+      <!-- Lucide-compatible source icons, vendored as SVG symbols. -->
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></symbol>
+      <symbol id="i-controls" viewBox="0 0 24 24"><path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/></symbol>
+      <symbol id="i-house" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol>
+      <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"/><circle cx="12" cy="13" r="3"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></symbol>
+      <symbol id="i-orders" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></symbol>
+      <symbol id="i-package" viewBox="0 0 24 24"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></symbol>
+      <symbol id="i-tags" viewBox="0 0 24 24"><path d="M13.172 2a2 2 0 0 1 1.414.586l6.71 6.71a2.4 2.4 0 0 1 0 3.408l-4.592 4.592a2.4 2.4 0 0 1-3.408 0l-6.71-6.71A2 2 0 0 1 6 9.172V3a1 1 0 0 1 1-1z"/><path d="M2 7v6.172a2 2 0 0 0 .586 1.414l6.71 6.71a2.4 2.4 0 0 0 3.191.193"/><circle cx="10.5" cy="6.5" r=".5" fill="currentColor"/></symbol>
+      <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 11h3.75a2 2 0 0 1 1.6.8l.45.6a4 4 0 0 0 6.4 0l.45-.6a2 2 0 0 1 1.6-.8H21"/><path d="M3 7h18"/><rect x="3" y="3" width="18" height="18" rx="2"/></symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 21v-6"/><path d="M12 21V3"/><path d="M19 21V9"/></symbol>
+      <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="sysbar" id="sysbar">
+    <div class="sys-left" id="sysLeft"></div>
+    <div class="sys-title" id="sysTitle"></div>
+    <button class="sys-control pressable" id="controlsBtn" aria-label="Системные настройки"><svg class="ico"><use href="#i-controls"/></svg></button>
+  </header>
+
+  <main class="stage" id="stage"></main>
+
+  <aside class="drawer" id="drawer" aria-hidden="true"><div class="drawer-scroll" id="drawerScroll"></div></aside>
+  <div class="backdrop" id="backdrop"></div>
+
+  <section class="control-popover" id="controlPopover" aria-hidden="true"></section>
+
+  <button class="action-dock hidden" id="actionDock" aria-label="Открыть следующее действие">
+    <span class="dock-copy"><span class="dock-kicker">СЛЕДУЮЩЕЕ</span><strong id="dockAction">Согласовать 3 500 ₽</strong></span>
+    <span class="dock-arrow">↑</span>
+  </button>
+
+  <section class="action-sheet" id="actionSheet" aria-hidden="true">
+    <div class="sheet-handle"></div>
+    <div class="sheet-kicker">СЛЕДУЮЩЕЕ</div>
+    <h2 id="sheetTitle">Диагностика завершена</h2>
+    <p id="sheetText">Нужно согласовать 3 500 ₽ с клиентом.</p>
+    <button class="sheet-primary pressable" id="sheetPrimary">Согласовать 3 500 ₽</button>
+    <button class="sheet-secondary pressable" id="sheetDocs">Документы</button>
+  </section>
+
+  <div class="toast" id="toast"></div>
+</div>
+<script src="v09.js?v=dna01"></script>
+</body>
+</html>
