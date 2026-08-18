@@ -21,3 +21,32 @@
 @media(prefers-reduced-motion:reduce){:root{--press:1ms;--nav:1ms;--detail:1ms;--sheet:1ms;--context:1ms}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
 
 .next-peek,.next-panel{touch-action:pan-y}.light .toolbelt{background:linear-gradient(145deg,rgba(255,255,255,.7),rgba(255,255,255,.25)),var(--glass)}.light .pin-dot{background:rgba(255,255,255,.82);color:var(--fg)}.light .tool-item.pinned .pin-dot{background:#5f86a8;color:#fff}.light .next-peek{background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,255,255,.35)),var(--glass)}.light .next-panel{background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,255,255,.45)),var(--glass2)}.light .modal{background:var(--glass2)}.light .panel-primary{background:linear-gradient(180deg,#4d7393,#3c5d79);color:#fff}.light .workspace-card{color:#f5f7fa}.light .tool-trigger{background:rgba(248,250,252,.78);color:var(--fg)}[data-scale="120"] .settings-bar,[data-scale="130"] .settings-bar,[data-scale="140"] .settings-bar,[data-scale="150"] .settings-bar{justify-content:flex-start}[data-scale="140"] .header.nested .settings-bar,[data-scale="150"] .header.nested .settings-bar{left:calc(106px*var(--control-scale))}
+/* OWNER VISIBLE P0 BLOCK 03 — source implementation, no index runtime patch */
+:root{--runtime-bottom-inset:0px}
+.tool-trigger{display:none!important}
+.page{padding-bottom:calc(76px*var(--control-scale) + var(--safe-b) + var(--runtime-bottom-inset))}
+.home-side{display:grid;gap:14px!important}
+.home-primary{border-color:rgba(126,164,199,.38);box-shadow:0 8px 22px rgba(0,0,0,.20),inset 0 1px rgba(255,255,255,.08)}
+.home-search{margin-top:0!important;background:var(--surface)}
+/* Gear popover sits below the header and never occupies header grid space. */
+.settings-bar{z-index:88;left:auto!important;right:calc(8px + env(safe-area-inset-right,0px));top:calc(var(--safe-t) + var(--header-h) + 6px);width:min(244px,calc(100vw - 16px));height:auto;max-height:min(360px,calc(100dvh - var(--header-h) - var(--safe-t) - 18px));display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:8px;border-radius:18px;overflow:auto;white-space:normal;transform:translateY(-8px) scale(.96);transform-origin:top right;opacity:0;pointer-events:none;transition:transform 240ms cubic-bezier(.20,.78,.18,1),opacity 200ms ease}
+.settings-bar.open{transform:none;opacity:1;pointer-events:auto}
+.settings-bar button{width:100%;min-width:0;min-height:42px;height:42px;padding:0 7px;color:var(--fg);border:1px solid var(--line);background:var(--surface2);border-radius:13px;display:flex;align-items:center;justify-content:center;gap:8px}
+.settings-bar button:nth-child(4){display:none}
+.settings-bar button:nth-child(n+5){grid-column:1/-1;justify-content:flex-start;padding-left:12px}
+.settings-bar button:nth-child(5)::after{content:'Тема'}
+.settings-bar button:nth-child(6)::after{content:'My Workspace'}
+.settings-bar button:nth-child(7)::after{content:'Аккаунт'}
+.settings-bar button:nth-child(6) .ico,.settings-bar button:nth-child(7) .ico{width:20px;height:20px}
+.header.nested .settings-bar{left:auto!important}
+.header.settings-open .header-title{opacity:1!important}
+/* Next Action is an always-visible operational capsule above Safari / in-app chrome. */
+.next-peek{left:calc(10px + env(safe-area-inset-left,0px));right:calc(10px + env(safe-area-inset-right,0px));bottom:calc(var(--safe-b) + var(--runtime-bottom-inset) + 10px);height:calc(52px*var(--control-scale));min-height:50px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.105),rgba(255,255,255,.025)),var(--glass);box-shadow:0 12px 34px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.12);font-size:calc(12px*var(--text-scale));font-weight:690}
+.next-peek::before{content:'';position:absolute;left:18px;right:18px;top:4px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);pointer-events:none}
+.next-panel{bottom:calc(var(--safe-b) + var(--runtime-bottom-inset));padding-bottom:calc(12px + var(--safe-b));}
+.light .settings-bar{background:rgba(250,252,254,.96);border-color:rgba(18,33,48,.14)}
+.light .settings-bar button{background:#fff;color:#18202a;border-color:rgba(18,33,48,.12)}
+.light .home-primary{background:linear-gradient(180deg,#e8f0f6,#dfe9f1);color:#17232f;border-color:#b7cad9}
+.light .home-search{background:#fff;color:#18202a;border-color:rgba(18,33,48,.12)}
+@media(max-width:390px){.settings-bar{width:min(238px,calc(100vw - 16px))}.home-side{gap:14px!important}}
+@media(prefers-reduced-motion:reduce){.settings-bar,.next-peek,.next-panel{transition-duration:1ms!important}}
