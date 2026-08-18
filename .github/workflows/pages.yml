@@ -46,9 +46,9 @@ jobs:
               payload += match.group(1)
 
           raw = base64.b64decode(payload, validate=True)
-          expected_bytes = 74288
-          if len(raw) != expected_bytes:
-              raise SystemExit(f'v0.8 payload byte mismatch: {len(raw)} != {expected_bytes}')
+          expected_source_bytes = 74279
+          if len(raw) != expected_source_bytes:
+              raise SystemExit(f'v0.8 payload byte mismatch: {len(raw)} != {expected_source_bytes}')
           html = raw.decode('utf-8')
 
           def replace_once(old, new, label):
@@ -98,12 +98,16 @@ jobs:
           if missing:
               raise SystemExit('v0.8 required contract missing: ' + ', '.join(missing))
 
+          patched_bytes = len(html.encode('utf-8'))
+          if patched_bytes < expected_source_bytes:
+              raise SystemExit(f'v0.8 patched page unexpectedly shrank: {patched_bytes}')
+
           (root / 'index.html').write_text(html, encoding='utf-8')
           script = re.findall(r'<script>(.*?)</script>', html, flags=re.S)
           if len(script) != 1:
               raise SystemExit(f'Expected one inline script in materialized v0.8, got {len(script)}')
           Path('/tmp/aion-v08.js').write_text(script[0], encoding='utf-8')
-          print(f'v0.8 direct materialized: {len(html.encode("utf-8"))} bytes; source payload: {len(raw)} bytes')
+          print(f'v0.8 direct materialized: {patched_bytes} bytes; source payload: {len(raw)} bytes')
           PY
           node --check /tmp/aion-v08.js
           grep -q "Требует внимания" prototypes/living-operations-v0.8/index.html
