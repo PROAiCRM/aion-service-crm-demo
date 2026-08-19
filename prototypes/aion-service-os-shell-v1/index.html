@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0f1720" />
+  <title>AION Service OS Shell v1</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-theme="graphite">
+  <main class="phone" id="app">
+    <header class="statusbar"><span>9:41</span><span>● ◔ ▰</span></header>
+
+    <section class="screen active" data-screen="home">
+      <div class="hero-bg"></div>
+      <div class="topline"><div><strong>AION Service</strong><small>PRO.Apple · Владелец</small></div><button class="avatar" data-open="library">AI</button></div>
+
+      <button class="eve-capsule" id="eveCapsule" aria-expanded="false">
+        <span class="eve-orb">✦</span>
+        <span class="eve-copy"><strong>EVE</strong><small id="eveText">2 вопроса требуют решения</small></span>
+        <span>›</span>
+      </button>
+      <div class="eve-panel" id="evePanel">
+        <strong>Выдача A-1042 заблокирована</strong>
+        <p>QC пройден, но остаток 8 900 ₽ не подтверждён.</p>
+        <div class="actions"><button data-open="works" class="primary">Открыть заказ</button><button id="eveDismiss">Позже</button></div>
+      </div>
+
+      <article class="widget now-widget">
+        <div class="widget-title"><span>Сейчас</span><small>обновлено 09:38</small></div>
+        <div class="kpis"><div><b>23</b><span>в работе</span></div><div><b>4</b><span>готовы</span></div><div><b>2</b><span>требуют решения</span></div></div>
+        <div class="revenue"><div><small>Выручка сегодня</small><b>84 500 ₽</b><span>+12% к вчера</span></div><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      </article>
+
+      <div class="apps-grid">
+        <button data-open="works"><span>⌘</span><small>Работы</small></button>
+        <button data-open="intake"><span>✣</span><small>Приёмка</small></button>
+        <button data-open="clients"><span>◯</span><small>Клиенты</small></button>
+        <button data-open="stock"><span>▣</span><small>Склад</small></button>
+        <button data-open="finance"><span>▤</span><small>Финансы</small></button>
+        <button data-open="library"><span>◎</span><small>Команда</small></button>
+        <button data-open="library"><span>▥</span><small>Аналитика</small></button>
+        <button data-open="library"><span>•••</span><small>Ещё</small></button>
+      </div>
+
+      <button class="search-pill" data-open="search">⌕ Поиск</button>
+      <nav class="dock system-dock">
+        <button class="active" data-open="home">⌂<small>Сейчас</small></button>
+        <button data-open="works">⌘<small>Работы</small></button>
+        <button class="eve-dock" id="eveDock">✦</button>
+        <button data-open="clients">◯<small>Клиенты</small></button>
+        <button data-open="library">▦<small>Ещё</small></button>
+      </nav>
+    </section>
+
+    <section class="screen" data-screen="library">
+      <div class="screen-head"><button data-home>‹</button><h1>Библиотека приложений</h1><button data-open="settings">⚙</button></div>
+      <input class="search" placeholder="Поиск приложений" />
+      <div class="section-label">Основные</div>
+      <div class="library-grid">
+        <button data-open="works"><span>⌘</span>Работы</button><button data-open="intake"><span>✣</span>Приёмка</button><button data-open="clients"><span>◯</span>Клиенты</button><button data-open="stock"><span>▣</span>Склад</button>
+      </div>
+      <div class="section-label">Управление</div>
+      <div class="library-grid">
+        <button data-open="finance"><span>▤</span>Финансы</button><button><span>◎</span>Команда</button><button><span>▥</span>Аналитика</button><button><span>◉</span>Отчёты</button>
+      </div>
+      <div class="section-label">Система</div>
+      <div class="library-grid">
+        <button data-open="control"><span>⌁</span>Центр</button><button data-open="recents"><span>▱</span>Контексты</button><button data-open="modules"><span>⊞</span>Модули</button><button data-open="settings"><span>⚙</span>Настройки</button>
+      </div>
+      <button class="primary wide" data-home>Вернуться домой</button>
+    </section>
+
+    <section class="screen app-screen" data-screen="works">
+      <div class="screen-head"><button data-home>‹</button><h1>Работы</h1><button id="newOrderBtn">＋</button></div>
+      <div class="segmented"><button class="active">Все 23</button><button>В работе 16</button><button>Готовы 4</button></div>
+      <input class="search" placeholder="Поиск заказов" />
+      <div class="orders">
+        <button class="order critical" data-order="A-1042"><div><b>№1042 · iPhone 14 Pro</b><small>Ирина Соколова · сегодня 17:10</small><em>⚠ Оплата 8 900 ₽ блокирует выдачу</em></div><span>Готов к выдаче</span></button>
+        <button class="order"><div><b>№1043 · MacBook Air M1</b><small>Алексей Смирнов</small></div><span>4 500 ₽</span></button>
+        <button class="order"><div><b>№1044 · Samsung S23</b><small>Мария Петрова</small></div><span>Диагностика</span></button>
+        <button class="order"><div><b>№1045 · iPad Air 5</b><small>Дмитрий Иванов</small></div><span>6 300 ₽</span></button>
+      </div>
+      <nav class="local-bar"><button data-home>⌂ Домой</button><button class="active">Работы</button><button id="quickBtn">＋</button><button data-open="clients">Клиенты</button><button data-open="library">Ещё</button></nav>
+    </section>
+
+    <section class="screen app-screen" data-screen="order">
+      <div class="screen-head"><button data-open="works">‹</button><h1>№1042</h1><span class="good">Готов к выдаче</span></div>
+      <article class="order-card">
+        <div class="device"><div class="device-img">▣</div><div><b>iPhone 14 Pro</b><small>Ирина Соколова</small><small>18.08.2026 · 11:10</small></div></div>
+        <div class="detail"><span>Устройство</span><b>iPhone 14 Pro</b></div>
+        <div class="detail"><span>Проблема</span><b>Не заряжается</b></div>
+        <div class="detail"><span>Работы</span><b>Замена разъёма зарядки · 5 900 ₽</b></div>
+        <div class="detail"><span>Запчасти</span><b>Разъём Lightning · 1 200 ₽</b></div>
+        <div class="detail"><span>QC</span><b class="good">Пройден</b></div>
+        <div class="detail attention"><span>Оплата</span><b id="balanceText">Остаток 8 900 ₽</b></div>
+        <div class="proof" id="proofChain">Приём ✓ → Ремонт ✓ → QC ✓ → Оплата • → Выдача 🔒</div>
+      </article>
+      <button class="primary wide" id="payBtn">Принять оплату 8 900 ₽</button>
+      <button class="secondary wide" data-open="works">Вернуться к работам</button>
+    </section>
+
+    <section class="screen" data-screen="control">
+      <div class="screen-head"><button data-home>‹</button><h1>AION Control Center</h1><button data-home>×</button></div>
+      <div class="control-grid">
+        <button><span>◫</span><b>Смена</b><small>Открыта</small></button><button><span>▤</span><b>Касса</b><small>42 300 ₽</small></button><button><span>⟳</span><b>Синхронизация</b><small>Актуально</small></button><button><span>♢</span><b>Уведомления</b><small>2 новых</small></button>
+      </div>
+      <div class="section-label">Быстрые действия</div>
+      <div class="control-grid"><button data-open="intake"><span>＋</span><b>Новый заказ</b></button><button><span>▣</span><b>Оплата</b></button><button><span>✓</span><b>Выдача</b></button><button><span>⌁</span><b>Диагностика</b></button></div>
+      <label class="range">Интенсивность материала<input type="range" min="0" max="100" value="62" /></label>
+    </section>
+
+    <section class="screen" data-screen="recents">
+      <div class="screen-head"><button data-home>‹</button><h1>Последние контексты</h1><span></span></div>
+      <div class="context-stack"><button data-open="order"><b>Работы</b><small>№1042 · iPhone 14 Pro</small></button><button data-open="clients"><b>Клиенты</b><small>Ирина Соколова</small></button><button data-open="stock"><b>Склад</b><small>Разъёмы Lightning</small></button><button data-open="finance"><b>Финансы</b><small>Выручка сегодня</small></button></div>
+    </section>
+
+    <section class="screen" data-screen="modules">
+      <div class="screen-head"><button data-home>‹</button><h1>Каталог модулей</h1><span></span></div>
+      <div class="module-list">
+        <article><div><b>Управление сервисом</b><small>Базовый пакет CRM</small></div><span class="good">Подключено</span></article>
+        <article><div><b>Финансы+</b><small>Бюджеты, план-факт, отчёты</small></div><button>1 290 ₽/мес.</button></article>
+        <article><div><b>Склад PRO</b><small>Закупки, поставщики, инвентаризация</small></div><button>990 ₽/мес.</button></article>
+        <article><div><b>Команда PRO</b><small>Расширенные роли и права</small></div><button>690 ₽/мес.</button></article>
+        <article><div><b>Business OS</b><small>Расширение возможностей AION OS</small></div><span>Скоро</span></article>
+      </div>
+    </section>
+
+    <section class="screen" data-screen="settings">
+      <div class="screen-head"><button data-home>‹</button><h1>Настройки</h1><span></span></div>
+      <div class="settings-list"><button>Профиль <span>›</span></button><button id="themeToggle">Материал <span id="themeName">Night Graphite</span></button><button>Язык <span>Русский</span></button><button>Размер интерфейса <span>Стандартный</span></button><button>Reduced Motion <span>Выкл.</span></button><button>Конфиденциальность <span>›</span></button><button>Синхронизация <span>Авто</span></button></div>
+    </section>
+
+    <section class="screen" data-screen="search">
+      <div class="screen-head"><button data-home>‹</button><h1>Поиск</h1><button data-home>Отмена</button></div>
+      <input class="search big-search" value="1042" autofocus />
+      <div class="section-label">Заказы</div><button class="search-result" data-open="order"><b>№1042 · iPhone 14 Pro</b><small>Ирина Соколова · Готов к выдаче</small></button>
+      <div class="section-label">Клиенты</div><button class="search-result" data-open="clients"><b>Ирина Соколова</b><small>+7 912 345-67-89</small></button>
+      <div class="section-label">Действия</div><div class="quick-row"><button data-open="intake">Создать заказ</button><button data-open="finance">Принять оплату</button></div>
+    </section>
+
+    <section class="screen app-screen" data-screen="clients"><div class="screen-head"><button data-home>‹</button><h1>Клиенты</h1><button>＋</button></div><input class="search" placeholder="Поиск клиентов" /><div class="simple-list"><button>Ирина Соколова <small>5 заказов · активный №1042</small></button><button>Алексей Смирнов <small>5 заказов</small></button><button>Мария Петрова <small>2 заказа</small></button><button>Дмитрий Иванов <small>4 заказа</small></button></div></section>
+    <section class="screen app-screen" data-screen="stock"><div class="screen-head"><button data-home>‹</button><h1>Склад</h1><span></span></div><div class="simple-list"><button>Дисплей iPhone 13 <small class="danger">2 шт. · низкий остаток</small></button><button>Аккумулятор iPhone 14 <small>5 шт.</small></button><button>Разъём Lightning <small>3 шт.</small></button><button>Стекло защитное <small>46 шт.</small></button></div></section>
+    <section class="screen app-screen" data-screen="finance"><div class="screen-head"><button data-home>‹</button><h1>Финансы</h1><span></span></div><article class="widget"><small>Выручка сегодня</small><h2>84 500 ₽</h2><div class="big-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article><div class="simple-list"><button>Наличные <b>42 300 ₽</b></button><button>Безналичные <b>38 700 ₽</b></button><button>Возвраты <b>-2 500 ₽</b></button><button>Средний чек <b>6 750 ₽</b></button></div></section>
+    <section class="screen app-screen" data-screen="intake"><div class="screen-head"><button data-home>Отмена</button><h1>Новый заказ</h1><button>Создать</button></div><div class="form-list"><label>Клиент<input value="Ирина Соколова" /></label><label>Устройство<input value="iPhone 14 Pro" /></label><label>Проблема<input value="Разбит дисплей" /></label><label>Комментарий<textarea>Клиент хочет оригинальный дисплей</textarea></label><label>Предварительная стоимость<input value="12 900 ₽" /></label></div></section>
+
+    <div class="quick-sheet" id="quickSheet"><button>Оплата</button><button>Фото</button><button>Статус</button><button>Заметка</button><button id="quickClose">×</button></div>
+    <div class="toast" id="toast"></div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
