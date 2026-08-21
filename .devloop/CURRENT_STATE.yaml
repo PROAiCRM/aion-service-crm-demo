@@ -1,0 +1,58 @@
+version: 0.1
+updated_at: 2026-08-21
+repository: PROAiCRM/aion-service-crm-demo
+mode: CONTROLLED_AUTONOMY_PILOT
+source_of_truth: GITHUB
+
+source:
+  pull_request: 27
+  branch: prototype/aion-service-mobile-v1.0-exact
+  head: c93f52d381d3180e65694f145c85e97b500ba20f
+  role: EXACT_STARTING_PROTOTYPE_SOURCE
+
+control_branch:
+  name: automation/aion-development-loop-v0.1
+  base_head: c93f52d381d3180e65694f145c85e97b500ba20f
+
+stage: DEVELOPMENT_LOOP_CONTROL_PLANE_BOOTSTRAP
+product_maturity: PROTOTYPE
+
+truth:
+  clickable_mobile_prototype_exists: true
+  backend_in_scope: false
+  database_in_scope: false
+  api_change_in_scope: false
+  real_data_in_scope: false
+  production_deploy_in_scope: false
+  autonomous_runner_implemented: false
+  independent_reviewer_wired: false
+  browser_qa_current_head: NOT_PROVEN
+  physical_iphone_qa_current_head: NOT_RUN
+  owner_acceptance_current_head: NOT_PROVEN
+  latest_owner_visual_reference_materialized_in_repository: false
+
+safety:
+  modify_main: false
+  modify_product_repository: false
+  merge_automatically: false
+  deploy_production: false
+  owner_interruptions_during_batch: HARD_STOP_ONLY
+
+current_focus:
+  screen: S01_HOME
+  theme: DAY_CASHMERE_FIRST
+  viewport: 393x852
+  objective: Establish the controlled loop, inspect the exact prototype source, and prepare the first bounded S01 implementation batch without redesign.
+
+known_gap:
+  id: VISUAL_SOURCE_NOT_MATERIALIZED
+  severity: P0_FOR_PIXEL_EXACT_VISUAL_WORK
+  description: The newest Owner-approved visual image from chat is not yet stored in this repository branch. Agents must not approximate a pixel-exact redesign from memory.
+  allowed_while_gap_exists:
+    - repository/source inspection
+    - deterministic runtime defect detection
+    - task decomposition
+    - test and verification harness preparation
+    - interaction fixes already unambiguously defined by repository canon
+
+next_required_step: Execute .devloop/NEXT_TASK.yaml and produce one batch handoff or an evidence-based HOLD.
