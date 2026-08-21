@@ -1,0 +1,62 @@
+task_id: DEVLOOP-PILOT-001
+status: READY
+kind: CONTROL_PLANE_AND_SOURCE_AUDIT
+priority: P0
+
+objective: >-
+  Bootstrap the first controlled development-loop batch from the exact PR #27 prototype source, inspect the current implementation, identify the smallest executable S01 work items, and prepare up to 10 tasks that can be completed without redesign or invented product decisions.
+
+source:
+  repository: PROAiCRM/aion-service-crm-demo
+  source_pr: 27
+  source_branch: prototype/aion-service-mobile-v1.0-exact
+  source_head: c93f52d381d3180e65694f145c85e97b500ba20f
+  working_branch: automation/aion-development-loop-v0.1
+
+read_first:
+  - AGENTS.md
+  - .devloop/CURRENT_STATE.yaml
+  - .devloop/OWNER_GATES.md
+  - .devloop/ACCEPTANCE.md
+  - .devloop/HANDOFF.md
+
+required_actions:
+  - Prove the current working branch descends from the exact source head.
+  - Inventory the actual prototype files, routes/screens, reusable components, interactions and existing checks.
+  - Identify deterministic defects or missing interaction states that are safe to fix automatically.
+  - Create a concrete first batch of no more than 10 tasks, ordered by dependency and user-visible value.
+  - Prefer S01 Home and shared primitives before broad multi-screen changes.
+  - Do not perform a pixel-exact visual redesign while the newest Owner visual reference is not materialized in the repository.
+  - If an exact visual reference is already available in the executing chat/context, record its identity/source explicitly before using it; do not silently rely on memory.
+  - Update CURRENT_STATE, NEXT_TASK and HANDOFF with evidence and the selected batch.
+
+allowed_changes:
+  - devloop control files
+  - narrowly bounded demo prototype code required for deterministic defects already proven by repository evidence
+  - tests or local verification harnesses inside the demo repository
+
+forbidden_changes:
+  - main
+  - PROAiCRM/AION-Service-CRM
+  - backend
+  - database
+  - api contracts
+  - migrations
+  - production deployment
+  - real data
+  - new product features
+  - visual redesign
+  - automatic merge
+
+acceptance:
+  - source_identity: PASS
+  - implementation_inventory: COMPLETED
+  - first_batch_tasks: 1_TO_10_CONCRETE_TASKS
+  - owner_gate_crossed: NO
+  - unsupported_assumptions: 0
+  - handoff_updated: YES
+
+owner_interruption_policy: HARD_STOP_ONLY
+
+completion_state: >-
+  End as BATCH_PLANNED if there are safe executable tasks. End as BLOCKED_EVIDENCE only if no useful implementation/verification work can continue without missing Owner evidence. Do not ask the Owner micro-questions.
